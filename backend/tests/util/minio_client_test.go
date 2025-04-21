@@ -1,3 +1,6 @@
+//go:build minio_test
+// +build minio_test
+
 package util_test
 
 import (
