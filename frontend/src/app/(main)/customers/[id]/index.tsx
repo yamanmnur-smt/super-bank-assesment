@@ -100,7 +100,7 @@ const CustomerDetailComponent = () => {
             <div className="overflow-y-auto flex-col h-full space-y-2">
               {customer?.pockets.map((item, index) => (
 
-                <div className="bg-[#dad7cd]  shadow-md backdrop-blur-sm px-3 py-3 h-20 rounded-xl">
+                <div key={index} className="bg-[#dad7cd]  shadow-md backdrop-blur-sm px-3 py-3 h-20 rounded-xl">
                   <div className="flex flex-row space-x-2">
 
                     <div className="px-3 py-3 bg-[#b5c1a1] backdrop-blur-2xl w-15 rounded-xl">
