@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  customerbackend:
+    container_name: customerbackend
+    depends_on:
+      simplecustomerdb:
+        condition: service_healthy
+    build: backend/
+    ports:
+      - "3001:3001"
+    networks:
+      - app-network
+  customerfrontend:
+    container_name: customerfrontend
+    depends_on:
+      - customerbackend
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+      target: dev
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+ 
+  simplecustomerdb:
+    image: postgres:latest
+    container_name: simplecustomerdb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: customer_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./postgres-data/customer-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000"   # for S3 API
+      - "9001:9001"   # for UI/Console
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: password123
+    volumes:
+      - ./minio_data:/data
+    command: server --console-address ":9001" /data
+    networks:
+      - app-network
+
+networks:
+  app-network: {}

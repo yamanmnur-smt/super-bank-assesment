@@ -1,0 +1,2750 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>requests: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">yamanmnur/simple-dashboard/internal/dto/requests/auth_request.go (100.0%)</option>
+				
+				<option value="file1">yamanmnur/simple-dashboard/internal/dto/requests/customer_request.go (100.0%)</option>
+				
+				<option value="file2">yamanmnur/simple-dashboard/internal/handlers/auth_controller.go (100.0%)</option>
+				
+				<option value="file3">yamanmnur/simple-dashboard/internal/handlers/customer_controller.go (100.0%)</option>
+				
+				<option value="file4">yamanmnur/simple-dashboard/internal/handlers/dashboard_controller.go (100.0%)</option>
+				
+				<option value="file5">yamanmnur/simple-dashboard/internal/injectors/auth_injector.go (100.0%)</option>
+				
+				<option value="file6">yamanmnur/simple-dashboard/internal/injectors/customer_injector.go (100.0%)</option>
+				
+				<option value="file7">yamanmnur/simple-dashboard/internal/injectors/dashboard_injector.go (100.0%)</option>
+				
+				<option value="file8">yamanmnur/simple-dashboard/internal/injectors/main_injector.go (100.0%)</option>
+				
+				<option value="file9">yamanmnur/simple-dashboard/internal/injectors/minio_injector.go (100.0%)</option>
+				
+				<option value="file10">yamanmnur/simple-dashboard/internal/injectors/user_injector.go (100.0%)</option>
+				
+				<option value="file11">yamanmnur/simple-dashboard/internal/middlewares/error_handler.go (87.1%)</option>
+				
+				<option value="file12">yamanmnur/simple-dashboard/internal/middlewares/jwt_middlewares.go (93.3%)</option>
+				
+				<option value="file13">yamanmnur/simple-dashboard/internal/repositories/customer_repository.go (100.0%)</option>
+				
+				<option value="file14">yamanmnur/simple-dashboard/internal/repositories/dashboard_repository.go (100.0%)</option>
+				
+				<option value="file15">yamanmnur/simple-dashboard/internal/repositories/user_repository.go (92.6%)</option>
+				
+				<option value="file16">yamanmnur/simple-dashboard/internal/services/auth_service.go (93.5%)</option>
+				
+				<option value="file17">yamanmnur/simple-dashboard/internal/services/customer_service.go (99.1%)</option>
+				
+				<option value="file18">yamanmnur/simple-dashboard/internal/services/dashboard_service.go (100.0%)</option>
+				
+				<option value="file19">yamanmnur/simple-dashboard/internal/services/user_service.go (100.0%)</option>
+				
+				<option value="file20">yamanmnur/simple-dashboard/main.go (0.0%)</option>
+				
+				<option value="file21">yamanmnur/simple-dashboard/pkg/data/base_data.go (100.0%)</option>
+				
+				<option value="file22">yamanmnur/simple-dashboard/pkg/db/db.go (100.0%)</option>
+				
+				<option value="file23">yamanmnur/simple-dashboard/pkg/db/dbhandler.go (0.0%)</option>
+				
+				<option value="file24">yamanmnur/simple-dashboard/pkg/requests/base_request.go (100.0%)</option>
+				
+				<option value="file25">yamanmnur/simple-dashboard/pkg/responses/base_response.go (0.0%)</option>
+				
+				<option value="file26">yamanmnur/simple-dashboard/pkg/util/bank_data_generate.go (100.0%)</option>
+				
+				<option value="file27">yamanmnur/simple-dashboard/pkg/util/format_currency.go (100.0%)</option>
+				
+				<option value="file28">yamanmnur/simple-dashboard/pkg/util/minio_client.go (82.8%)</option>
+				
+				<option value="file29">yamanmnur/simple-dashboard/routes/auth_routes.go (100.0%)</option>
+				
+				<option value="file30">yamanmnur/simple-dashboard/routes/customer_routes.go (100.0%)</option>
+				
+				<option value="file31">yamanmnur/simple-dashboard/routes/dashboard_routes.go (100.0%)</option>
+				
+				<option value="file32">yamanmnur/simple-dashboard/seeder/bank_account_seeder.go (0.0%)</option>
+				
+				<option value="file33">yamanmnur/simple-dashboard/seeder/customer_seeder.go (0.0%)</option>
+				
+				<option value="file34">yamanmnur/simple-dashboard/seeder/main_seeder.go (0.0%)</option>
+				
+				<option value="file35">yamanmnur/simple-dashboard/seeder/pocket_seeder.go (0.0%)</option>
+				
+				<option value="file36">yamanmnur/simple-dashboard/seeder/term_deposit_types_seeder.go (0.0%)</option>
+				
+				<option value="file37">yamanmnur/simple-dashboard/seeder/term_deposite_seeder.go (0.0%)</option>
+				
+				<option value="file38">yamanmnur/simple-dashboard/seeder/user_seeder.go (0.0%)</option>
+				
+				<option value="file39">yamanmnur/simple-dashboard/tests/services/mocks/customer_repository_mock.go (100.0%)</option>
+				
+				<option value="file40">yamanmnur/simple-dashboard/tests/services/mocks/minio_client_mock.go (100.0%)</option>
+				
+				<option value="file41">yamanmnur/simple-dashboard/tests/services/mocks/user_repository_mock.go (100.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">no coverage</span>
+				<span class="cov1">low coverage</span>
+				<span class="cov2">*</span>
+				<span class="cov3">*</span>
+				<span class="cov4">*</span>
+				<span class="cov5">*</span>
+				<span class="cov6">*</span>
+				<span class="cov7">*</span>
+				<span class="cov8">*</span>
+				<span class="cov9">*</span>
+				<span class="cov10">high coverage</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package requests
+
+import (
+        validation "github.com/go-ozzo/ozzo-validation/v4"
+)
+
+type Login struct {
+        Username string
+        Password string
+}
+
+func (r Login) Validate() error <span class="cov10" title="6">{
+        return validation.ValidateStruct(&amp;r,
+                validation.Field(&amp;r.Username, validation.Required),
+                validation.Field(&amp;r.Password, validation.Required),
+        )
+}</span>
+
+type Register struct {
+        Name     string
+        Username string
+        Password string
+}
+
+func (r Register) Validate() error <span class="cov6" title="3">{
+        return validation.ValidateStruct(&amp;r,
+                validation.Field(&amp;r.Username, validation.Required),
+                validation.Field(&amp;r.Password, validation.Required),
+        )
+}</span>
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package requests
+
+import validation "github.com/go-ozzo/ozzo-validation/v4"
+
+type CustomerRequest struct {
+        Photo          string `json:"photo"`
+        Name           string `json:"name"`
+        Email          string `json:"email"`
+        PhoneNumber    string `json:"phone"`
+        Address        string `json:"address"`
+        Gender         string `json:"gender"`
+        AccountPurpose string `json:"account_purpose"`
+        SourceOfIncome string `json:"source_of_income"`
+        IncomePerMonth string `json:"income_per_month"`
+        Jobs           string `json:"jobs"`
+        Position       string `json:"position"`
+        Industries     string `json:"industries"`
+        CompanyName    string `json:"company_name"`
+        AddressCompany string `json:"address_company"`
+        TotalBalance   string `json:"total_balance"`
+        TotalDeposits  string `json:"total_deposits"`
+        TotalPockets   string `json:"total_pockets"`
+        Username       string `json:"username"`
+}
+
+func (r CustomerRequest) Validate() error <span class="cov10" title="3">{
+        return validation.ValidateStruct(&amp;r,
+                validation.Field(&amp;r.Name, validation.Required),
+                validation.Field(&amp;r.Email, validation.Required),
+                validation.Field(&amp;r.PhoneNumber, validation.Required),
+                validation.Field(&amp;r.Address, validation.Required),
+                validation.Field(&amp;r.Username, validation.Required),
+        )
+}</span>
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package handlers
+
+import (
+        "errors"
+        "fmt"
+        "net/http"
+        "strconv"
+        "yamanmnur/simple-dashboard/internal/dto/requests"
+        "yamanmnur/simple-dashboard/internal/services"
+        pkg_data "yamanmnur/simple-dashboard/pkg/data"
+        pkg_response "yamanmnur/simple-dashboard/pkg/responses"
+
+        "github.com/gofiber/fiber/v2"
+)
+
+type AuthController struct {
+        Service services.IAuthService
+}
+
+func (c *AuthController) Login(ctx *fiber.Ctx) error <span class="cov10" title="4">{
+        var requestBody requests.Login
+
+        if err := ctx.BodyParser(&amp;requestBody); err != nil </span><span class="cov1" title="1">{
+                return pkg_data.InvalidReqPayloadError{Message: "invalid request payload"}
+
+        }</span>
+
+        <span class="cov8" title="3">if err := requestBody.Validate(); err != nil </span><span class="cov1" title="1">{
+                return pkg_data.InvalidReqPayloadError{Message: err.Error()}
+        }</span>
+
+        <span class="cov5" title="2">res, err := c.Service.Login(&amp;requestBody)
+
+        if err != nil </span><span class="cov1" title="1">{
+                return err
+        }</span>
+
+        <span class="cov1" title="1">response := pkg_response.GenericResponse{
+                MetaData: pkg_response.MetaData{
+                        Status:  "success",
+                        Message: "Success To Login User",
+                        Code:    "200",
+                },
+                Data: res,
+        }
+
+        ctx.Status(http.StatusOK).JSON(response)
+        return nil</span>
+}
+
+func (c *AuthController) Profile(ctx *fiber.Ctx) error <span class="cov10" title="4">{
+
+        stringId := fmt.Sprintf("%v", ctx.Locals("UserId"))
+
+        if stringId == "" </span><span class="cov1" title="1">{
+                return errors.New("missing user id")
+        }</span>
+
+        <span class="cov8" title="3">idUint, err := strconv.ParseUint(stringId, 10, 32)
+
+        if err != nil </span><span class="cov1" title="1">{
+                return errors.New("invalid user id")
+        }</span>
+
+        <span class="cov5" title="2">res, err := c.Service.Profile(uint(idUint))
+
+        if err != nil </span><span class="cov1" title="1">{
+                return err
+        }</span>
+
+        <span class="cov1" title="1">response := pkg_response.GenericResponse{
+                MetaData: pkg_response.MetaData{
+                        Status:  "success",
+                        Message: "Success To Get Profile User",
+                        Code:    "200",
+                },
+                Data: res,
+        }
+
+        ctx.Status(http.StatusOK).JSON(response)
+        return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">package handlers
+
+import (
+        "fmt"
+        "net/http"
+        "strconv"
+        "yamanmnur/simple-dashboard/internal/dto/data"
+        "yamanmnur/simple-dashboard/internal/dto/requests"
+        "yamanmnur/simple-dashboard/internal/services"
+        pkg_data "yamanmnur/simple-dashboard/pkg/data"
+        pkg_requests "yamanmnur/simple-dashboard/pkg/requests"
+        pkg_response "yamanmnur/simple-dashboard/pkg/responses"
+
+        "github.com/gofiber/fiber/v2"
+)
+
+type CustomerController struct {
+        Service services.ICustomerService
+}
+
+func GetBaseURL(c *fiber.Ctx) string <span class="cov8" title="3">{
+        scheme := "http"
+        if c.Protocol() == "https" || c.Secure() </span><span class="cov1" title="1">{
+                scheme = "https"
+        }</span>
+        <span class="cov8" title="3">return fmt.Sprintf("%s://%s", scheme, c.Hostname())</span>
+}
+
+func (c *CustomerController) GetCustomerByID(ctx *fiber.Ctx) error <span class="cov8" title="3">{
+        id := ctx.Params("id")
+
+        idUint, err := strconv.ParseUint(id, 10, 32)
+        if err != nil </span><span class="cov1" title="1">{
+                return fiber.NewError(fiber.StatusBadRequest, "Invalid customer ID")
+        }</span>
+
+        <span class="cov5" title="2">customer, err := c.Service.Detail(uint(idUint))
+        if err != nil </span><span class="cov1" title="1">{
+                return err
+        }</span>
+
+        <span class="cov1" title="1">response := pkg_response.GenericResponse{
+                MetaData: pkg_response.MetaData{
+                        Status:  "success",
+                        Message: "Success To Get Data",
+                        Code:    "200",
+                },
+                Data: customer,
+        }
+
+        ctx.Status(http.StatusOK).JSON(response)
+        return nil</span>
+}
+
+func (c *CustomerController) GetCustomersWithPagination(ctx *fiber.Ctx) error <span class="cov10" title="4">{
+        var pageRequest pkg_requests.PageRequest
+
+        if err := ctx.QueryParser(&amp;pageRequest); err != nil </span><span class="cov1" title="1">{
+                return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+                        "error": "Invalid query parameters",
+                })
+        }</span>
+
+        <span class="cov8" title="3">if err := pageRequest.Validate(); err != nil </span><span class="cov1" title="1">{
+                return pkg_data.InvalidReqPayloadError{Message: err.Error()}
+        }</span>
+
+        <span class="cov5" title="2">result, err := c.Service.GetCustomersWithPagination(pageRequest)
+        if err != nil </span><span class="cov1" title="1">{
+                response := pkg_response.BasicResponse{
+                        MetaData: pkg_response.MetaData{
+                                Status:  "error",
+                                Message: err.Error(),
+                                Code:    "500",
+                        },
+                }
+                ctx.Status(http.StatusInternalServerError).JSON(response)
+                return err
+        }</span>
+
+        <span class="cov1" title="1">response := pkg_response.PaginateResponse[data.CustomerData]{
+                MetaData: pkg_response.MetaData{
+                        Status:  "success",
+                        Message: "Success To Retrieve Data",
+                        Code:    "200",
+                },
+                Data: result.Data,
+
+                PageData: pkg_data.PageData{
+                        Page:      int(pageRequest.PageNumber),
+                        Limit:     int(pageRequest.PageSize),
+                        TotalRows: result.PageData.TotalRows,
+                },
+        }
+
+        ctx.Status(http.StatusOK).JSON(response)
+        return nil</span>
+}
+
+func (c *CustomerController) UpdatePhotoCustomer(ctx *fiber.Ctx) error <span class="cov8" title="3">{
+        var requestBody requests.CustomerPhotoRequest
+
+        if err := ctx.BodyParser(&amp;requestBody); err != nil </span><span class="cov1" title="1">{
+                return pkg_data.InvalidReqPayloadError{Message: "missing payload body"}
+        }</span>
+
+        <span class="cov5" title="2">customer, err := c.Service.UpdatePhotoCustomer(&amp;requestBody)
+        if err != nil </span><span class="cov1" title="1">{
+                return err
+        }</span>
+
+        <span class="cov1" title="1">response := pkg_response.GenericResponse{
+                MetaData: pkg_response.MetaData{
+                        Status:  "success",
+                        Message: "Success To Update Photo Customer",
+                        Code:    "200",
+                },
+                Data: customer,
+        }
+
+        ctx.Status(http.StatusOK).JSON(response)
+        return nil</span>
+}
+
+func (c *CustomerController) UploadPhotoCustomer(ctx *fiber.Ctx) error <span class="cov10" title="4">{
+        file, err := ctx.FormFile("fileUpload")
+
+        if err != nil </span><span class="cov1" title="1">{
+                return err
+        }</span>
+
+        <span class="cov8" title="3">fileinfo, err := c.Service.UploadPhotoCustomer(GetBaseURL(ctx), file)
+        if err != nil </span><span class="cov1" title="1">{
+                return err
+        }</span>
+
+        <span class="cov5" title="2">response := pkg_response.GenericResponse{
+                MetaData: pkg_response.MetaData{
+                        Status:  "success",
+                        Message: "Success To Update Photo Customer",
+                        Code:    "200",
+                },
+                Data: fileinfo,
+        }
+
+        ctx.Status(http.StatusOK).JSON(response)
+        return nil</span>
+}
+
+func (c *CustomerController) GetPhotoCustomer(ctx *fiber.Ctx) error <span class="cov5" title="2">{
+        filename := ctx.Query("filename")
+
+        file, err := c.Service.GetPhotoCustomer(filename)
+        if err != nil </span><span class="cov1" title="1">{
+                return err
+        }</span>
+
+        <span class="cov1" title="1">ctx.Response().Header.Set("Content-Type", "image/png")
+        ctx.Send(file)
+
+        return nil</span>
+}
+
+func (c *CustomerController) Create(ctx *fiber.Ctx) error <span class="cov10" title="4">{
+        var requestBody requests.CustomerRequest
+        if err := ctx.BodyParser(&amp;requestBody); err != nil </span><span class="cov1" title="1">{
+                return pkg_data.InvalidReqPayloadError{Message: "invalid request payload"}
+        }</span>
+
+        <span class="cov8" title="3">if err := requestBody.Validate(); err != nil </span><span class="cov1" title="1">{
+                return pkg_data.InvalidReqPayloadError{Message: err.Error()}
+        }</span>
+
+        <span class="cov5" title="2">res, err := c.Service.Create(&amp;requestBody)
+
+        if err != nil </span><span class="cov1" title="1">{
+                return err
+        }</span>
+
+        <span class="cov1" title="1">response := pkg_response.GenericResponse{
+                MetaData: pkg_response.MetaData{
+                        Status:  "success",
+                        Message: "Success To Get Profile User",
+                        Code:    "200",
+                },
+                Data: res,
+        }
+
+        ctx.Status(http.StatusOK).JSON(response)
+        return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file4" style="display: none">package handlers
+
+import (
+        "net/http"
+        "yamanmnur/simple-dashboard/internal/services"
+        pkg_response "yamanmnur/simple-dashboard/pkg/responses"
+
+        "github.com/gofiber/fiber/v2"
+)
+
+type DashboardController struct {
+        Service services.IDashboardService
+}
+
+func (c *DashboardController) GetDashboard(ctx *fiber.Ctx) error <span class="cov10" title="2">{
+
+        result, err := c.Service.GetDashboard()
+        if err != nil </span><span class="cov1" title="1">{
+                return err
+        }</span>
+
+        <span class="cov1" title="1">response := pkg_response.GenericResponse{
+                MetaData: pkg_response.MetaData{
+                        Status:  "success",
+                        Message: "Success To Get Data",
+                        Code:    "200",
+                },
+                Data: result,
+        }
+
+        ctx.Status(http.StatusOK).JSON(response)
+        return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file5" style="display: none">package injectors
+
+import (
+        "yamanmnur/simple-dashboard/internal/handlers"
+        "yamanmnur/simple-dashboard/internal/services"
+        "yamanmnur/simple-dashboard/pkg/db"
+)
+
+func InjectorAuthDI(dbHandler *db.IDbHandler, container *Container) <span class="cov10" title="2">{
+        container.AuthService = &amp;services.AuthService{UserService: container.UserService}
+        container.AuthController = &amp;handlers.AuthController{Service: container.AuthService}
+}</span>
+</pre>
+		
+		<pre class="file" id="file6" style="display: none">package injectors
+
+import (
+        "yamanmnur/simple-dashboard/internal/handlers"
+        "yamanmnur/simple-dashboard/internal/repositories"
+        "yamanmnur/simple-dashboard/internal/services"
+        "yamanmnur/simple-dashboard/pkg/db"
+)
+
+func InjectorCustomerDI(dbHandler *db.IDbHandler, container *Container) <span class="cov10" title="3">{
+        container.CustomerRepository = &amp;repositories.CustomerRepository{IDbHandler: dbHandler}
+        container.CustomerService = &amp;services.CustomerService{Repository: container.CustomerRepository, MinioClient: container.MinioClient}
+        container.CustomerController = &amp;handlers.CustomerController{Service: container.CustomerService}
+}</span>
+</pre>
+		
+		<pre class="file" id="file7" style="display: none">package injectors
+
+import (
+        "yamanmnur/simple-dashboard/internal/handlers"
+        "yamanmnur/simple-dashboard/internal/repositories"
+        "yamanmnur/simple-dashboard/internal/services"
+        "yamanmnur/simple-dashboard/pkg/db"
+)
+
+func InjectorDashboardDI(dbHandler *db.IDbHandler, container *Container) <span class="cov8" title="1">{
+        container.DashboardRepository = &amp;repositories.DashboardRepository{IDbHandler: dbHandler}
+        container.DashboardService = &amp;services.DashboardService{Repository: container.DashboardRepository}
+        container.DashboardController = &amp;handlers.DashboardController{Service: container.DashboardService}
+}</span>
+</pre>
+		
+		<pre class="file" id="file8" style="display: none">package injectors
+
+import (
+        "yamanmnur/simple-dashboard/internal/handlers"
+        "yamanmnur/simple-dashboard/internal/repositories"
+        "yamanmnur/simple-dashboard/internal/services"
+        "yamanmnur/simple-dashboard/pkg/db"
+        "yamanmnur/simple-dashboard/pkg/util"
+        "yamanmnur/simple-dashboard/routes"
+
+        "github.com/gofiber/fiber/v2"
+        "github.com/minio/minio-go/v7"
+)
+
+type Container struct {
+        UserRepository      *repositories.UserRepository
+        UserService         *services.UserService
+        AuthService         *services.AuthService
+        CustomerRepository  *repositories.CustomerRepository
+        CustomerService     *services.CustomerService
+        DashboardRepository *repositories.DashboardRepository
+        DashboardService    *services.DashboardService
+
+        CustomerController  *handlers.CustomerController
+        DashboardController *handlers.DashboardController
+        AuthController      *handlers.AuthController
+
+        MinioClient *util.MinioClient
+}
+
+func InitDI(app *fiber.App, dbHandler *db.IDbHandler, minioClient *minio.Client) <span class="cov8" title="1">{
+        container := &amp;Container{}
+
+        InjectorMinioDI(minioClient, container)
+
+        InjectorUserDI(dbHandler, container)
+
+        InjectorAuthDI(dbHandler, container)
+
+        InjectorCustomerDI(dbHandler, container)
+
+        InjectorDashboardDI(dbHandler, container)
+
+        routes.InitAuthRoutes(app, container.AuthController)
+        routes.InitCustomerRoute(app, container.CustomerController)
+        routes.InitDashboardRoutes(app, container.DashboardController)
+}</span>
+</pre>
+		
+		<pre class="file" id="file9" style="display: none">package injectors
+
+import (
+        "yamanmnur/simple-dashboard/pkg/util"
+
+        "github.com/minio/minio-go/v7"
+)
+
+func InjectorMinioDI(minioClient *minio.Client, container *Container) <span class="cov8" title="1">{
+        container.MinioClient = &amp;util.MinioClient{Client: minioClient}
+}</span>
+</pre>
+		
+		<pre class="file" id="file10" style="display: none">package injectors
+
+import (
+        "yamanmnur/simple-dashboard/internal/repositories"
+        "yamanmnur/simple-dashboard/internal/services"
+        "yamanmnur/simple-dashboard/pkg/db"
+)
+
+func InjectorUserDI(dbHandler *db.IDbHandler, container *Container) <span class="cov10" title="4">{
+        container.UserRepository = &amp;repositories.UserRepository{IDbHandler: dbHandler}
+        container.UserService = &amp;services.UserService{Repository: container.UserRepository}
+}</span>
+</pre>
+		
+		<pre class="file" id="file11" style="display: none">package middlewares
+
+import (
+        "errors"
+        "net/http"
+        pkg_data "yamanmnur/simple-dashboard/pkg/data"
+        pkg_response "yamanmnur/simple-dashboard/pkg/responses"
+
+        "github.com/gofiber/fiber/v2"
+        "gorm.io/gorm"
+)
+
+func ErrorHandler(ctx *fiber.Ctx, err error) error <span class="cov10" title="19">{
+        if err != nil </span><span class="cov8" title="13">{
+
+                var statusCode int
+                var message string
+                var invalidReqPayloadError pkg_data.InvalidReqPayloadError
+                invalidUserId := errors.New("invalid user id")
+                missionUserId := errors.New("missing user id")
+                missingPayload := errors.New("missing payload body")
+                credentialWrong := errors.New("credential wrong")
+                if errors.Is(err, gorm.ErrRecordNotFound) </span><span class="cov1" title="1">{
+                        statusCode = http.StatusNotFound
+                        message = "Record not found"
+                }</span> else<span class="cov8" title="12"> if errors.As(err, &amp;invalidReqPayloadError) </span><span class="cov6" title="6">{
+                        statusCode = http.StatusBadRequest
+                        message = err.Error()
+                }</span> else<span class="cov6" title="6"> if err.Error() == missionUserId.Error() </span><span class="cov1" title="1">{
+                        statusCode = http.StatusUnauthorized
+                        message = err.Error()
+                }</span> else<span class="cov5" title="5"> if err.Error() == invalidUserId.Error() </span><span class="cov1" title="1">{
+                        statusCode = http.StatusBadRequest
+                        message = err.Error()
+                }</span> else<span class="cov5" title="4"> if err.Error() == missingPayload.Error() </span><span class="cov0" title="0">{
+                        statusCode = http.StatusBadRequest
+                        message = err.Error()
+                }</span> else<span class="cov5" title="4"> if err.Error() == credentialWrong.Error() </span><span class="cov0" title="0">{
+                        statusCode = http.StatusBadRequest
+                        message = "Credential Wrong"
+                }</span> else<span class="cov5" title="4"> {
+                        statusCode = http.StatusInternalServerError
+                        message = err.Error()
+                }</span>
+
+                <span class="cov8" title="13">response := pkg_response.BasicResponse{
+                        MetaData: pkg_response.MetaData{
+                                Status:  "error",
+                                Message: message,
+                                Code:    http.StatusText(statusCode),
+                        },
+                }
+
+                return ctx.Status(statusCode).JSON(response)</span>
+        }
+
+        <span class="cov6" title="6">return nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file12" style="display: none">package middlewares
+
+import (
+        "github.com/gofiber/fiber/v2"
+        "github.com/golang-jwt/jwt/v5"
+        "github.com/spf13/viper"
+)
+
+func JwtMiddleware(c *fiber.Ctx) error <span class="cov10" title="3">{
+        secretKey := viper.Get("APP_SECRET_KEY").(string)
+        secretKeyByte := []byte(secretKey)
+        authHeader := c.Get("Authorization")
+
+        if authHeader == "" </span><span class="cov1" title="1">{
+                return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+                        "error": "Missing or invalid token",
+                })
+        }</span>
+
+        <span class="cov6" title="2">tokenStr := authHeader[len("Bearer "):]
+
+        token, err := jwt.Parse(tokenStr, func(t *jwt.Token) (interface{}, error) </span><span class="cov1" title="1">{
+                if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok </span><span class="cov0" title="0">{
+                        return nil, fiber.ErrUnauthorized
+                }</span>
+                <span class="cov1" title="1">return secretKeyByte, nil</span>
+        })
+
+        <span class="cov6" title="2">if err != nil || !token.Valid </span><span class="cov1" title="1">{
+                return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+                        "error": "Invalid token",
+                })
+        }</span>
+        <span class="cov1" title="1">userId, _ := token.Claims.GetSubject()
+        c.Locals("UserId", userId)
+
+        return c.Next()</span>
+}
+</pre>
+		
+		<pre class="file" id="file13" style="display: none">package repositories
+
+import (
+        "yamanmnur/simple-dashboard/internal/dto/data"
+        "yamanmnur/simple-dashboard/internal/models"
+        pkg_data "yamanmnur/simple-dashboard/pkg/data"
+        "yamanmnur/simple-dashboard/pkg/db"
+        pkg_requests "yamanmnur/simple-dashboard/pkg/requests"
+
+        "gorm.io/gorm"
+)
+
+type ICustomerRepository interface {
+        FindById(id uint) (models.Customer, error)
+        Detail(id uint, detail_data *models.Customer) error
+        Create(customer *models.Customer) error
+        Update(customerData *data.CustomerData) (models.Customer, error)
+        UpdatePatch(customerData *data.CustomerData) (models.Customer, error)
+        Delete(id uint) error
+        GetCustomersWithPagination(pageRequest pkg_requests.PageRequest) (pkg_data.PaginateData[data.CustomerData], error)
+}
+
+type CustomerRepository struct {
+        *db.IDbHandler
+}
+
+func (repository *CustomerRepository) Detail(id uint, detail_data *models.Customer) error <span class="cov8" title="3">{
+        err := repository.DB.Model(&amp;models.Customer{}).
+                Where("customers.id = ?", id).
+                Preload("BankAccounts").
+                Preload("BankAccounts.TermDeposit").
+                Preload("Pockets").
+                First(&amp;detail_data).Error
+        if err != nil </span><span class="cov5" title="2">{
+                return err
+        }</span>
+
+        <span class="cov1" title="1">return nil</span>
+}
+
+func (repository *CustomerRepository) FindById(id uint) (models.Customer, error) <span class="cov8" title="3">{
+        var user models.Customer
+        err := repository.DB.Model(&amp;models.Customer{}).
+                Where("customers.id = ?", id).
+                Preload("BankAccounts").
+                Preload("BankAccounts.TermDeposit").
+                Preload("Pockets").
+                First(&amp;user).Error
+
+        return user, err
+}</span>
+
+func (repository *CustomerRepository) Create(customer *models.Customer) error <span class="cov5" title="2">{
+
+        if result := repository.DB.Create(&amp;customer); result.Error != nil </span><span class="cov1" title="1">{
+                return result.Error
+        }</span>
+
+        <span class="cov1" title="1">return nil</span>
+}
+
+func (repository *CustomerRepository) Update(customerData *data.CustomerData) (models.Customer, error) <span class="cov8" title="3">{
+        var customer models.Customer
+
+        customer.Name = customerData.Name
+        customer.Email = customerData.Email
+        customer.PhoneNumber = customerData.PhoneNumber
+        customer.Address = customerData.Address
+        result := repository.DB.Where("id = ?", customerData.Id).Updates(&amp;customer)
+        if result.Error != nil </span><span class="cov1" title="1">{
+                return models.Customer{}, result.Error
+        }</span>
+
+        <span class="cov5" title="2">if result.RowsAffected == 0 </span><span class="cov1" title="1">{
+                return models.Customer{}, gorm.ErrRecordNotFound
+        }</span>
+
+        <span class="cov1" title="1">return customer, nil</span>
+}
+
+func (repository *CustomerRepository) UpdatePatch(customerData *data.CustomerData) (models.Customer, error) <span class="cov10" title="4">{
+        var customer models.Customer
+
+        if customerData.Id == 0 </span><span class="cov1" title="1">{
+                return models.Customer{}, gorm.ErrRecordNotFound
+        }</span>
+
+        <span class="cov8" title="3">if customerData.Name != "" </span><span class="cov8" title="3">{
+                customer.Name = customerData.Name
+        }</span>
+
+        <span class="cov8" title="3">if customerData.Email != "" </span><span class="cov8" title="3">{
+                customer.Email = customerData.Email
+        }</span>
+
+        <span class="cov8" title="3">if customerData.PhoneNumber != "" </span><span class="cov8" title="3">{
+                customer.PhoneNumber = customerData.PhoneNumber
+        }</span>
+
+        <span class="cov8" title="3">if customerData.Address != "" </span><span class="cov8" title="3">{
+                customer.Address = customerData.Address
+        }</span>
+
+        <span class="cov8" title="3">if customerData.Photo != "" </span><span class="cov5" title="2">{
+                customer.Photo = customerData.Photo
+        }</span>
+
+        <span class="cov8" title="3">result := repository.DB.Where("id = ?", customerData.Id).Updates(&amp;customer)
+        if result.Error != nil </span><span class="cov1" title="1">{
+                return models.Customer{}, result.Error
+        }</span>
+
+        <span class="cov5" title="2">if result.RowsAffected == 0 </span><span class="cov1" title="1">{
+                return models.Customer{}, gorm.ErrRecordNotFound
+        }</span>
+
+        <span class="cov1" title="1">return customer, nil</span>
+}
+
+func (repository *CustomerRepository) Delete(id uint) error <span class="cov5" title="2">{
+        result := repository.DB.Delete(&amp;models.Customer{}, id)
+        if result.RowsAffected == 0 </span><span class="cov1" title="1">{
+                return gorm.ErrRecordNotFound
+        }</span>
+        <span class="cov1" title="1">return nil</span>
+}
+func (repository *CustomerRepository) GetCustomersWithPagination(pageRequest pkg_requests.PageRequest) (pkg_data.PaginateData[data.CustomerData], error) <span class="cov10" title="4">{
+        var page_data pkg_data.PaginateData[data.CustomerData]
+        var customers []data.CustomerData
+
+        query := repository.DB.Model(&amp;models.Customer{})
+
+        query = query.Select(`
+                customers.id, 
+                customers.name, 
+                customers.email, 
+                customers.phone_number, 
+                customers.address, 
+                TO_CHAR(customers.created_at, 'DD Mon YYYY HH24:MI:SS') as created_at, 
+                b.account_number
+        `)
+        query = query.Joins(`LEFT JOIN LATERAL (
+                select 
+                        bank_accounts.id, 
+                        bank_accounts.account_number, 
+                        bank_accounts.customer_id 
+                from bank_accounts 
+                where bank_accounts.deleted_at is null
+                and bank_accounts.customer_id = customers.id
+                order by created_at desc  
+                limit 1
+                ) b ON true
+        `)
+
+        if pageRequest.Search != "" </span><span class="cov1" title="1">{
+                searchTerm := "%" + pageRequest.Search + "%"
+                query = query.Where(`CONCAT_WS(' ', 
+                name, 
+                email, 
+                phone_number, 
+                b.account_number,
+                TO_CHAR(customers.created_at, 'DD Mon YYYY HH24:MI:SS'),
+                address) LIKE ?`, searchTerm)
+        }</span>
+
+        <span class="cov10" title="4">if pageRequest.SortBy != "" &amp;&amp; pageRequest.SortDirection != "" </span><span class="cov10" title="4">{
+                sortOrder := pageRequest.SortBy + " " + pageRequest.SortDirection
+                query = query.Order(sortOrder)
+        }</span>
+
+        <span class="cov10" title="4">if err := query.Count(&amp;page_data.PageData.TotalRows).Error; err != nil </span><span class="cov1" title="1">{
+                return pkg_data.PaginateData[data.CustomerData]{}, err
+        }</span>
+
+        <span class="cov8" title="3">if err := query.Limit(int(pageRequest.PageSize)).Offset(int((pageRequest.PageNumber) * pageRequest.PageSize)).Find(&amp;customers).Error; err != nil </span><span class="cov1" title="1">{
+                return pkg_data.PaginateData[data.CustomerData]{}, err
+        }</span>
+
+        <span class="cov5" title="2">page_data.Data = customers
+        page_data.PageData.Limit = int(pageRequest.PageSize)
+        page_data.PageData.Page = int(pageRequest.PageNumber)
+        page_data.PageData.TotalPages = int((page_data.PageData.TotalRows + int64(pageRequest.PageSize) - 1) / int64(pageRequest.PageSize)) // Calculate total pages
+
+        return page_data, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file14" style="display: none">package repositories
+
+import (
+        "yamanmnur/simple-dashboard/internal/dto/data"
+        "yamanmnur/simple-dashboard/pkg/db"
+)
+
+type IDashboardRepository interface {
+        GetTotalCard() (data.DashboardTotalCard, error)
+        GetPieData() ([]data.ChartData, error)
+        GetMonthlyRegisteredCustomers() ([]data.ChartData, error)
+}
+
+type DashboardRepository struct {
+        *db.IDbHandler
+}
+
+func (repository *DashboardRepository) GetTotalCard() (data.DashboardTotalCard, error) <span class="cov8" title="1">{
+        var result data.DashboardTotalCard
+
+        err := repository.DB.
+                Raw(`
+                        SELECT
+                                (SELECT COUNT(id) FROM customers) AS total_customers,
+                                (SELECT SUM(amount) FROM term_deposits) AS total_deposits,
+                                (SELECT SUM(balance) FROM bank_accounts) AS total_balance
+                `).Scan(&amp;result).Error
+
+        return result, err
+}</span>
+
+func (repository *DashboardRepository) GetPieData() ([]data.ChartData, error) <span class="cov8" title="1">{
+        var result []data.ChartData
+
+        err := repository.DB.
+                Raw(`
+                        SELECT 
+                                term_deposits_types.name AS label, 
+                                COALESCE(SUM(term_deposits.amount), 0) AS value
+                        FROM 
+                                term_deposits_types
+                        LEFT JOIN 
+                                term_deposits 
+                        ON 
+                                term_deposits.term_deposits_type_id = term_deposits_types.id
+                        GROUP BY 
+                                term_deposits_types.name
+                `).Scan(&amp;result).Error
+
+        return result, err
+}</span>
+
+func (repository *DashboardRepository) GetMonthlyRegisteredCustomers() ([]data.ChartData, error) <span class="cov8" title="1">{
+        var result []data.ChartData
+
+        err := repository.DB.
+                Raw(`
+                        WITH months AS (
+                                SELECT TO_CHAR(date_trunc('month', d), 'Mon') AS label, EXTRACT(MONTH FROM d) AS month_order
+                                FROM generate_series(
+                                        date_trunc('year', CURRENT_DATE),
+                                        date_trunc('year', CURRENT_DATE) + interval '1 year - 1 day',
+                                        interval '1 month'
+                                ) AS d
+                        )
+                        SELECT 
+                                months.label, 
+                                COALESCE(COUNT(customers.id), 0) AS value
+                        FROM 
+                                months
+                        LEFT JOIN 
+                                customers 
+                        ON 
+                                EXTRACT(MONTH FROM customers.created_at) = months.month_order
+                                AND EXTRACT(YEAR FROM customers.created_at) = EXTRACT(YEAR FROM CURRENT_DATE)
+                        GROUP BY 
+                                months.label, months.month_order
+                        ORDER BY 
+                                months.month_order
+                `).Scan(&amp;result).Error
+
+        return result, err
+}</span>
+</pre>
+		
+		<pre class="file" id="file15" style="display: none">package repositories
+
+import (
+        "errors"
+        "yamanmnur/simple-dashboard/internal/dto/data"
+        "yamanmnur/simple-dashboard/internal/models"
+        "yamanmnur/simple-dashboard/pkg/db"
+
+        "gorm.io/gorm"
+)
+
+type IUserRepository interface {
+        FindById(id uint) (models.User, error)
+        FindByUsername(username string) (models.User, error)
+        Create(userData data.UserData) (models.User, error)
+        Update(userData data.UserData) (models.User, error)
+}
+
+type UserRepository struct {
+        *db.IDbHandler
+}
+
+func (repository *UserRepository) FindById(id uint) (models.User, error) <span class="cov1" title="1">{
+        var user models.User
+        repository.DB.Raw("SELECT * FROM users WHERE id = ?", id).Scan(&amp;user)
+
+        return user, nil
+}</span>
+
+func (repository *UserRepository) FindByUsername(username string) (models.User, error) <span class="cov1" title="1">{
+        var user models.User
+
+        result := repository.DB.Raw("SELECT * FROM users WHERE username = ?", username).Scan(&amp;user)
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return models.User{}, result.Error
+        }</span>
+        <span class="cov1" title="1">if result.RowsAffected == 0 </span><span class="cov0" title="0">{
+                return models.User{}, gorm.ErrRecordNotFound
+        }</span>
+        <span class="cov1" title="1">return user, nil</span>
+}
+
+func (repository *UserRepository) Create(userData data.UserData) (models.User, error) <span class="cov10" title="3">{
+        var user models.User
+        user.Name = userData.Name
+        user.Username = userData.Username
+        user.Password = userData.Password
+        result := repository.DB.Where("username = ?", user.Username).FirstOrCreate(&amp;user)
+
+        if result.Error != nil </span><span class="cov1" title="1">{
+                return models.User{}, result.Error
+        }</span>
+
+        <span class="cov6" title="2">if result.RowsAffected == 0 </span><span class="cov1" title="1">{
+                return models.User{}, errors.New("user exists")
+        }</span>
+
+        <span class="cov1" title="1">return user, nil</span>
+}
+
+func (repository *UserRepository) Update(userData data.UserData) (models.User, error) <span class="cov6" title="2">{
+        var user models.User
+
+        user.Name = userData.Name
+        user.Username = userData.Username
+        user.Password = userData.Password
+
+        if result := repository.DB.Where("id = ?", userData.Id).Updates(&amp;user); result.Error != nil </span><span class="cov1" title="1">{
+                return models.User{}, result.Error
+        }</span>
+
+        <span class="cov1" title="1">return user, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file16" style="display: none">package services
+
+import (
+        "errors"
+        "fmt"
+        "time"
+        "yamanmnur/simple-dashboard/internal/dto/data"
+        "yamanmnur/simple-dashboard/internal/dto/requests"
+
+        "github.com/golang-jwt/jwt/v5"
+        "github.com/spf13/viper"
+
+        "golang.org/x/crypto/bcrypt"
+)
+
+type IAuthService interface {
+        Login(request *requests.Login) (data.JwtToken, error)
+        Profile(userId uint) (data.UserProfileData, error)
+        Register(request *requests.Register) (data.JwtToken, error)
+        GenerateToken(userId string) (string, error)
+}
+
+func HashPassword(password string) (string, error) <span class="cov1" title="1">{
+        hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+        if err != nil </span><span class="cov0" title="0">{
+                return "", err
+        }</span>
+        <span class="cov1" title="1">return string(hash), nil</span>
+}
+
+func checkPassword(hashedPassword, inputPassword string) bool <span class="cov6" title="2">{
+        err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(inputPassword))
+        return err == nil
+}</span>
+
+type AuthService struct {
+        UserService IUserService
+}
+
+func (service *AuthService) GenerateToken(userId string) (string, error) <span class="cov10" title="3">{
+        secretKey := viper.Get("APP_SECRET_KEY").(string)
+        secretKeyByte := []byte(secretKey)
+        iss := fmt.Sprintf("%v:%v", "jwtservice", "3321")
+        claims := jwt.MapClaims{
+                "sub":   userId,
+                "exp":   time.Now().Add(time.Hour * 1).Unix(),
+                "iss":   iss,
+                "roles": []string{"admin"},
+        }
+        token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+        // Add "kid" to the header
+        token.Header["kid"] = "sim2"
+        signedToken, _ := token.SignedString(secretKeyByte)
+
+        return signedToken, nil
+
+}</span>
+
+func (service *AuthService) Register(request *requests.Register) (data.JwtToken, error) <span class="cov1" title="1">{
+
+        password, _ := HashPassword(request.Password)
+
+        resUser, err := service.UserService.Create(data.UserData{
+                Name:     request.Name,
+                Username: request.Username,
+                Password: password,
+        })
+
+        if err != nil </span><span class="cov0" title="0">{
+                return data.JwtToken{}, err
+        }</span>
+
+        <span class="cov1" title="1">resToken, _ := service.GenerateToken(fmt.Sprintf("%d", resUser.Id))
+
+        return data.JwtToken{
+                User: data.UserProfileData{
+                        Id:       resUser.Id,
+                        Name:     resUser.Name,
+                        Username: resUser.Username,
+                },
+                Token: resToken,
+        }, nil</span>
+}
+
+func (service *AuthService) Login(request *requests.Login) (data.JwtToken, error) <span class="cov10" title="3">{
+
+        resUser, err := service.UserService.FindByUsername(request.Username)
+        if err != nil </span><span class="cov1" title="1">{
+                return data.JwtToken{}, errors.New("credential wrong")
+        }</span>
+
+        <span class="cov6" title="2">if !checkPassword(resUser.Password, request.Password) </span><span class="cov1" title="1">{
+                return data.JwtToken{}, errors.New("credential wrong")
+        }</span>
+
+        <span class="cov1" title="1">resToken, _ := service.GenerateToken(fmt.Sprintf("%d", resUser.Id))
+        return data.JwtToken{
+                User: data.UserProfileData{
+                        Id:       resUser.Id,
+                        Name:     resUser.Name,
+                        Username: resUser.Username,
+                },
+                Token: resToken,
+        }, nil</span>
+}
+
+func (service *AuthService) Profile(userId uint) (data.UserProfileData, error) <span class="cov6" title="2">{
+
+        resUser, err := service.UserService.FindById(userId)
+        if err != nil </span><span class="cov1" title="1">{
+                return data.UserProfileData{}, err
+        }</span>
+
+        <span class="cov1" title="1">return data.UserProfileData{
+                Id:       resUser.Id,
+                Name:     resUser.Name,
+                Username: resUser.Username,
+        }, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file17" style="display: none">package services
+
+import (
+        "bytes"
+        "fmt"
+        "io"
+        "mime/multipart"
+        "strconv"
+        "yamanmnur/simple-dashboard/internal/dto/data"
+        "yamanmnur/simple-dashboard/internal/dto/requests"
+        "yamanmnur/simple-dashboard/internal/models"
+        "yamanmnur/simple-dashboard/internal/repositories"
+        pkg_data "yamanmnur/simple-dashboard/pkg/data"
+        pkg_requests "yamanmnur/simple-dashboard/pkg/requests"
+        "yamanmnur/simple-dashboard/pkg/util"
+)
+
+type ICustomerService interface {
+        FindById(id uint) (data.CustomerData, error)
+        Detail(id uint) (data.CustomerDetailData, error)
+        Create(request *requests.CustomerRequest) (data.CustomerDetailData, error)
+        Update(userData *data.CustomerData) (data.CustomerData, error)
+        UpdatePhotoCustomer(userData *requests.CustomerPhotoRequest) (data.CustomerData, error)
+        UploadPhotoCustomer(baseUrl string, file *multipart.FileHeader) (string, error)
+        GetPhotoCustomer(filename string) ([]byte, error)
+        Delete(id uint) error
+        GetCustomersWithPagination(pageRequest pkg_requests.PageRequest) (*pkg_data.PaginateResponse[data.CustomerData], error)
+}
+
+type CustomerService struct {
+        Repository  repositories.ICustomerRepository
+        MinioClient util.IMinioClient
+}
+
+func (service *CustomerService) Detail(id uint) (data.CustomerDetailData, error) <span class="cov7" title="3">{
+        var customer models.Customer
+        var result data.CustomerDetailData
+
+        err := service.Repository.Detail(id, &amp;customer)
+        if err != nil </span><span class="cov1" title="1">{
+                return data.CustomerDetailData{}, err
+        }</span>
+
+        <span class="cov4" title="2">result.Id = customer.ID
+        result.Username = customer.Username
+        result.Name = customer.Name
+        result.Email = customer.Email
+        result.PhoneNumber = customer.PhoneNumber
+        result.Address = customer.Address
+        result.AccountPurpose = customer.AccountPurpose
+        result.SourceOfIncome = customer.SourceOfIncome
+        result.IncomePerMonth = customer.IncomePerMonth
+        result.Jobs = customer.Jobs
+        result.Photo = customer.Photo
+        result.Gender = customer.Gender
+        result.Position = customer.Position
+        result.Industries = customer.Industries
+        result.CompanyName = customer.CompanyName
+        result.AddressCompany = customer.AddressCompany
+        result.Pockets = make([]data.PocketData, len(customer.Pockets))
+        result.CreatedAt = customer.CreatedAt.Format("02 January 2006")
+
+        totalBalance := 0.0
+        totalDeposits := 0.0
+        totalPockets := 0.0
+        for i, pocket := range customer.Pockets </span><span class="cov4" title="2">{
+                totalBalance += pocket.Balance
+                totalPockets += pocket.Balance
+                result.Pockets[i] = data.PocketData{
+                        Name:     pocket.Name,
+                        Balance:  pocket.Balance,
+                        Currency: pocket.Currency,
+                }
+        }</span>
+
+        <span class="cov4" title="2">bank := customer.BankAccounts[0]
+        totalBalance += bank.Balance
+
+        result.TotalBalance = fmt.Sprintf("%.2f", totalBalance)
+        result.TotalPockets = fmt.Sprintf("%.2f", totalPockets)
+
+        result.Banks = data.BankAccountData{
+                Id:             bank.ID,
+                AccountNumber:  bank.AccountNumber,
+                Balance:        bank.Balance,
+                AccountType:    bank.AccountType,
+                Cvc:            bank.Cvc,
+                CardNumber:     bank.CardNumber,
+                Status:         string(bank.Status),
+                ExpirationDate: bank.ExpirationDate,
+                Deposites:      make([]data.TermDepositData, len(bank.TermDeposit)),
+        }
+        for j, deposit := range bank.TermDeposit </span><span class="cov1" title="1">{
+                totalDeposits += deposit.Amount
+                result.Banks.Deposites[j] = data.TermDepositData{
+                        Amount:                deposit.Amount,
+                        InterestRate:          deposit.InterestRate,
+                        StartDate:             deposit.StartDate,
+                        MaturityDate:          deposit.MaturityDate,
+                        Status:                deposit.Status,
+                        ExtensionInstructions: deposit.ExtensionInstructions,
+                        TermDepositsTypes: data.TermDepositsTypesData{
+                                Name:          deposit.TermDepositsType.Name,
+                                InterestRate:  deposit.TermDepositsType.InterestRate,
+                                MinAmount:     deposit.TermDepositsType.MinAmount,
+                                MaxAmount:     deposit.TermDepositsType.MaxAmount,
+                                TermDays:      deposit.TermDepositsType.TermDays,
+                                EffectiveDate: deposit.TermDepositsType.EffectiveDate,
+                        },
+                }
+        }</span>
+
+        <span class="cov4" title="2">result.TotalDeposits = fmt.Sprintf("%.2f", totalDeposits)
+
+        return result, nil</span>
+}
+
+func (service *CustomerService) FindById(id uint) (data.CustomerData, error) <span class="cov4" title="2">{
+        var result data.CustomerData
+
+        customer, err := service.Repository.FindById(id)
+        if err != nil </span><span class="cov1" title="1">{
+                return data.CustomerData{}, err
+        }</span>
+
+        <span class="cov1" title="1">result.Id = customer.ID
+        result.Name = customer.Name
+        result.Email = customer.Email
+        result.PhoneNumber = customer.PhoneNumber
+        result.Address = customer.Address
+        result.Photo = customer.Photo
+        result.AccountNumber = customer.BankAccounts[0].AccountNumber
+
+        return result, nil</span>
+}
+
+func (service *CustomerService) Create(request *requests.CustomerRequest) (data.CustomerDetailData, error) <span class="cov4" title="2">{
+        inputCustomer := models.Customer{
+                Name:           request.Name,
+                Email:          request.Email,
+                PhoneNumber:    request.PhoneNumber,
+                Address:        request.Address,
+                Photo:          request.Photo,
+                Username:       request.Username,
+                Gender:         request.Gender,
+                AccountPurpose: request.AccountPurpose,
+                SourceOfIncome: request.SourceOfIncome,
+                IncomePerMonth: request.SourceOfIncome,
+                Jobs:           request.Jobs,
+                Position:       request.Position,
+                Industries:     request.Industries,
+                CompanyName:    request.CompanyName,
+                AddressCompany: request.AddressCompany,
+                BankAccounts: []models.BankAccount{
+                        {
+                                CardNumber:     util.GenerateCardNumber(),
+                                AccountNumber:  util.GenerateAccountNumber(),
+                                Balance:        0,
+                                Cvc:            util.GenerateCVC(),
+                                ExpirationDate: util.GenerateExpirationDate(),
+                                AccountType:    "Savings",
+                                Status:         models.ACTIVE_BANK_ACCOUNT,
+                        },
+                },
+        }
+
+        err := service.Repository.Create(&amp;inputCustomer)
+
+        if err != nil </span><span class="cov1" title="1">{
+                return data.CustomerDetailData{}, err
+        }</span>
+
+        <span class="cov1" title="1">customerDetail, _ := service.Detail(inputCustomer.ID)
+        return customerDetail, nil</span>
+}
+
+func (service *CustomerService) Update(request *data.CustomerData) (data.CustomerData, error) <span class="cov4" title="2">{
+        var result data.CustomerData
+        customer, err := service.Repository.Update(request)
+        if err != nil </span><span class="cov1" title="1">{
+                return data.CustomerData{}, err
+        }</span>
+
+        <span class="cov1" title="1">result.Id = customer.ID
+        result.Name = customer.Name
+        result.Email = customer.Email
+        result.PhoneNumber = customer.PhoneNumber
+        result.Address = customer.Address
+
+        return result, nil</span>
+}
+
+func (service *CustomerService) UpdatePhotoCustomer(request *requests.CustomerPhotoRequest) (data.CustomerData, error) <span class="cov4" title="2">{
+        var result data.CustomerData
+        result.Photo = request.Photo
+        id, _ := strconv.ParseUint(request.Id, 10, 32)
+
+        result.Id = uint(id)
+
+        _, err := service.Repository.UpdatePatch(&amp;result)
+        if err != nil </span><span class="cov1" title="1">{
+                return data.CustomerData{}, err
+        }</span>
+
+        <span class="cov1" title="1">customer, _ := service.Repository.FindById(result.Id)
+
+        result.Id = customer.ID
+        result.Name = customer.Name
+        result.Email = customer.Email
+        result.PhoneNumber = customer.PhoneNumber
+        result.Address = customer.Address
+
+        return result, nil</span>
+}
+
+func (service *CustomerService) UploadPhotoCustomer(baseUrl string, file *multipart.FileHeader) (string, error) <span class="cov10" title="5">{
+        multipartFile, err := file.Open()
+
+        if err != nil </span><span class="cov1" title="1">{
+                return "", err
+        }</span>
+        <span class="cov8" title="4">defer multipartFile.Close()
+
+        buf := bytes.NewBuffer(nil)
+        if _, err := io.Copy(buf, multipartFile); err != nil </span><span class="cov0" title="0">{
+                return "", err
+        }</span>
+
+        <span class="cov8" title="4">err = service.MinioClient.MakeBucket("customer")
+        if err != nil </span><span class="cov1" title="1">{
+                return "", err
+        }</span>
+        <span class="cov7" title="3">err = service.MinioClient.Upload("customer", file.Filename, buf.Bytes())
+
+        if err != nil </span><span class="cov4" title="2">{
+                return "", err
+        }</span>
+
+        <span class="cov1" title="1">location_url := fmt.Sprintf("%s/api/v1/file/customer/photo?filename=%s", baseUrl, file.Filename)
+
+        return location_url, nil</span>
+}
+
+func (service *CustomerService) GetPhotoCustomer(filename string) ([]byte, error) <span class="cov4" title="2">{
+        bytes, err := service.MinioClient.GetObject("customer", filename)
+
+        return bytes, err
+}</span>
+
+func (service *CustomerService) Delete(id uint) error <span class="cov4" title="2">{
+        err := service.Repository.Delete(id)
+        if err != nil </span><span class="cov1" title="1">{
+
+                return err
+        }</span>
+
+        <span class="cov1" title="1">return nil</span>
+}
+func (service *CustomerService) GetCustomersWithPagination(pageRequest pkg_requests.PageRequest) (*pkg_data.PaginateResponse[data.CustomerData], error) <span class="cov4" title="2">{
+
+        pageData, err := service.Repository.GetCustomersWithPagination(pageRequest)
+        if err != nil </span><span class="cov1" title="1">{
+                return nil, err
+        }</span>
+
+        <span class="cov1" title="1">response := &amp;pkg_data.PaginateResponse[data.CustomerData]{
+                Data: pageData.Data,
+                PageData: pkg_data.PageData{
+                        Limit:      pageData.PageData.Limit,
+                        Page:       pageData.PageData.Page,
+                        Sort:       pageRequest.SortBy + " " + pageRequest.SortDirection,
+                        TotalRows:  pageData.PageData.TotalRows,
+                        TotalPages: pageData.PageData.TotalPages,
+                },
+        }
+
+        return response, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file18" style="display: none">package services
+
+import (
+        "yamanmnur/simple-dashboard/internal/dto/data"
+        "yamanmnur/simple-dashboard/internal/repositories"
+        "yamanmnur/simple-dashboard/pkg/util"
+)
+
+type IDashboardService interface {
+        GetDashboard() (data.DashboardData, error)
+}
+
+type DashboardService struct {
+        Repository repositories.IDashboardRepository
+}
+
+func (service *DashboardService) GetDashboard() (data.DashboardData, error) <span class="cov10" title="4">{
+        total_card, err := service.Repository.GetTotalCard()
+        if err != nil </span><span class="cov1" title="1">{
+                return data.DashboardData{}, err
+        }</span>
+
+        <span class="cov8" title="3">format_balance, _ := util.FormatIDRCurrency(total_card.TotalBalance)
+        format_deposit, _ := util.FormatIDRCurrency(total_card.TotalDeposits)
+
+        total_card.TotalBalance = format_balance
+        total_card.TotalDeposits = format_deposit
+
+        pie_data, err := service.Repository.GetPieData()
+        for i, item := range pie_data </span><span class="cov10" title="4">{
+                format_value, _ := util.FormatIDRCurrency(item.Value)
+
+                pie_data[i].Value = format_value
+        }</span>
+        <span class="cov8" title="3">if err != nil </span><span class="cov1" title="1">{
+                return data.DashboardData{}, err
+        }</span>
+
+        <span class="cov5" title="2">bar_data, err := service.Repository.GetMonthlyRegisteredCustomers()
+        if err != nil </span><span class="cov1" title="1">{
+                return data.DashboardData{}, err
+        }</span>
+
+        <span class="cov1" title="1">return data.DashboardData{
+                TotalCards: total_card,
+                PieData:    pie_data,
+                BarData:    bar_data,
+        }, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file19" style="display: none">package services
+
+import (
+        "yamanmnur/simple-dashboard/internal/dto/data"
+        "yamanmnur/simple-dashboard/internal/repositories"
+)
+
+type IUserService interface {
+        FindById(id uint) (data.UserData, error)
+        FindByUsername(username string) (data.UserData, error)
+        Create(userData data.UserData) (data.UserData, error)
+        Update(userData data.UserData) (data.UserData, error)
+}
+
+// Denpedency Injection for Repository
+type UserService struct {
+        Repository repositories.IUserRepository
+}
+
+func (service *UserService) FindById(id uint) (data.UserData, error) <span class="cov10" title="2">{
+
+        var result data.UserData
+
+        user, err := service.Repository.FindById(id)
+        if err != nil </span><span class="cov1" title="1">{
+                return data.UserData{}, err
+        }</span>
+
+        <span class="cov1" title="1">result.Id = user.ID
+        result.Name = user.Name
+        result.Username = user.Username
+        result.Password = user.Password
+
+        return result, nil</span>
+}
+
+func (service *UserService) FindByUsername(username string) (data.UserData, error) <span class="cov10" title="2">{
+
+        var result data.UserData
+
+        user, err := service.Repository.FindByUsername(username)
+        if err != nil </span><span class="cov1" title="1">{
+                return data.UserData{}, err
+        }</span>
+
+        <span class="cov1" title="1">result.Id = user.ID
+        result.Name = user.Name
+        result.Username = user.Username
+        result.Password = user.Password
+
+        return result, nil</span>
+}
+
+func (service *UserService) Create(userData data.UserData) (data.UserData, error) <span class="cov10" title="2">{
+
+        var result data.UserData
+
+        user, err := service.Repository.Create(userData)
+        if err != nil </span><span class="cov1" title="1">{
+                return data.UserData{}, err
+        }</span>
+
+        <span class="cov1" title="1">result.Id = user.ID
+        result.Name = user.Name
+        result.Username = user.Username
+        result.Password = user.Password
+
+        return result, nil</span>
+}
+
+func (service *UserService) Update(userData data.UserData) (data.UserData, error) <span class="cov10" title="2">{
+
+        var result data.UserData
+
+        user, err := service.Repository.Update(userData)
+        if err != nil </span><span class="cov1" title="1">{
+                return data.UserData{}, err
+        }</span>
+
+        <span class="cov1" title="1">result.Id = user.ID
+        result.Name = user.Name
+        result.Username = user.Username
+        result.Password = user.Password
+
+        return result, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file20" style="display: none">package main
+
+import (
+        "flag"
+        "fmt"
+        "log"
+        "yamanmnur/simple-dashboard/internal/injectors"
+        "yamanmnur/simple-dashboard/internal/middlewares"
+        "yamanmnur/simple-dashboard/pkg/db"
+        "yamanmnur/simple-dashboard/pkg/util"
+        "yamanmnur/simple-dashboard/seeder"
+
+        "github.com/gofiber/fiber/v2/middleware/cors"
+        "gorm.io/driver/postgres"
+        "gorm.io/gorm"
+
+        "github.com/gofiber/fiber/v2"
+        "github.com/spf13/viper"
+)
+
+func main() <span class="cov0" title="0">{
+        flag.Parse()
+
+        viper.SetConfigFile(".env")
+        viper.ReadInConfig()
+
+        dbUrl := viper.Get("DB_URL").(string)
+        APP_PORT := viper.Get("APP_PORT").(string)
+
+        dbPgsql, err := gorm.Open(postgres.Open(dbUrl), &amp;gorm.Config{})
+
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatalln(err)
+        }</span>
+
+        <span class="cov0" title="0">dbHandler := db.Init(dbPgsql)
+
+        client := util.InitMinio()
+
+        // init singleton DBHandler
+        db.InitInstanceDbHandler(&amp;db.IDbHandler{
+                DB: dbHandler,
+        })
+
+        app := fiber.New()
+        app.Use(cors.New())
+        app.Use(func(ctx *fiber.Ctx) error </span><span class="cov0" title="0">{
+                return middlewares.ErrorHandler(ctx, ctx.Next())
+        }</span>)
+
+        // Init Singleton for Service and Repository
+        <span class="cov0" title="0">injectors.InitDI(app, db.GetDbHandler(), client)
+
+        // Init Seeder
+        seeder.InitSeed()
+
+        app.Listen(fmt.Sprintf("127.0.0.1:%s", APP_PORT))</span>
+}
+</pre>
+		
+		<pre class="file" id="file21" style="display: none">package pkg_data
+
+type PageData struct {
+        Limit      int    `json:"limit,omitempty"`
+        Page       int    `json:"page,omitempty"`
+        Sort       string `json:"sort,omitempty"`
+        TotalRows  int64  `json:"total_rows"`
+        TotalPages int    `json:"total_pages"`
+}
+
+func (p *PageData) GetOffset() int <span class="cov7" title="4">{
+        return (p.GetPage() - 1) * p.GetLimit()
+}</span>
+
+func (p *PageData) GetLimit() int <span class="cov10" title="6">{
+        if p.Limit == 0 </span><span class="cov6" title="3">{
+                p.Limit = 10
+        }</span>
+        <span class="cov10" title="6">return p.Limit</span>
+}
+
+func (p *PageData) GetPage() int <span class="cov10" title="6">{
+        if p.Page == 0 </span><span class="cov6" title="3">{
+                p.Page = 1
+        }</span>
+        <span class="cov10" title="6">return p.Page</span>
+}
+
+func (p *PageData) GetSort() string <span class="cov4" title="2">{
+        if p.Sort == "" </span><span class="cov1" title="1">{
+                p.Sort = "Id desc"
+        }</span>
+        <span class="cov4" title="2">return p.Sort</span>
+}
+
+type PaginateResponse[T any] struct {
+        Data     []T      `json:"data"`
+        PageData PageData `json:"page_data"`
+}
+
+type PaginateData[T any] struct {
+        Data     []T      `json:"data"`
+        PageData PageData `json:"page_data"`
+}
+
+type InvalidReqPayloadError struct {
+        Message string
+}
+
+func (e InvalidReqPayloadError) Error() string <span class="cov10" title="6">{
+        return e.Message
+}</span>
+</pre>
+		
+		<pre class="file" id="file22" style="display: none">package db
+
+import (
+        "yamanmnur/simple-dashboard/internal/models"
+
+        "gorm.io/gorm"
+)
+
+func Init(db *gorm.DB) *gorm.DB <span class="cov8" title="1">{
+
+        db.AutoMigrate(&amp;models.User{})
+        db.AutoMigrate(&amp;models.Customer{})
+        db.AutoMigrate(&amp;models.BankAccount{})
+        db.AutoMigrate(&amp;models.Pocket{})
+        db.AutoMigrate(&amp;models.TermDepositsTypes{})
+        db.AutoMigrate(&amp;models.TermDeposit{})
+        db.AutoMigrate(&amp;models.AccountTransactions{})
+
+        return db
+}</span>
+</pre>
+		
+		<pre class="file" id="file23" style="display: none">package db
+
+import (
+        "gorm.io/gorm"
+)
+
+type IDbHandler struct {
+        DB *gorm.DB
+}
+
+var instanceDbHandler *IDbHandler
+
+func InitInstanceDbHandler(dbHandler *IDbHandler) <span class="cov0" title="0">{
+        instanceDbHandler = dbHandler
+}</span>
+func GetDbHandler() *IDbHandler <span class="cov0" title="0">{
+        return instanceDbHandler
+}</span>
+</pre>
+		
+		<pre class="file" id="file24" style="display: none">package pkg_requests
+
+import validation "github.com/go-ozzo/ozzo-validation/v4"
+
+type PageRequest struct {
+        Search        string `query:"search"`
+        PageNumber    uint   `query:"page_number"`
+        PageSize      uint   `query:"page_size"`
+        SortBy        string `query:"sort_by"`
+        SortDirection string `query:"sort_direction"`
+}
+
+func (r PageRequest) Validate() error <span class="cov10" title="3">{
+        return validation.ValidateStruct(&amp;r,
+                validation.Field(&amp;r.PageSize, validation.Required),
+        )
+}</span>
+</pre>
+		
+		<pre class="file" id="file25" style="display: none">package pkg_response
+
+import pkg_data "yamanmnur/simple-dashboard/pkg/data"
+
+type MetaData struct {
+        Status  string `json:"status"`
+        Message string `json:"message"`
+        Code    string `json:"code"`
+}
+
+type GenericResponse struct {
+        MetaData MetaData    `json:"meta_data"`
+        Data     interface{} `json:"data"`
+}
+
+type BasicResponse struct {
+        MetaData MetaData `json:"meta_data"`
+}
+
+type PaginateResponse[T any] struct {
+        MetaData MetaData          `json:"meta_data"`
+        Data     []T               `json:"data"`
+        PageData pkg_data.PageData `json:"page_data"`
+}
+
+func NewPaginateResponse[T any](metaData MetaData) *PaginateResponse[T] <span class="cov0" title="0">{
+        return &amp;PaginateResponse[T]{
+                MetaData: metaData,
+        }
+}</span>
+
+func (p *PaginateResponse[T]) GetPageData() pkg_data.PageData <span class="cov0" title="0">{
+        return p.PageData
+}</span>
+
+func (p *PaginateResponse[T]) SetPageData(pageData pkg_data.PageData) <span class="cov0" title="0">{
+        p.PageData = pageData
+}</span>
+
+func (p *PaginateResponse[T]) GetData() []T <span class="cov0" title="0">{
+        return p.Data
+}</span>
+
+func (p *PaginateResponse[T]) SetData(data []T) <span class="cov0" title="0">{
+        p.Data = data
+}</span>
+</pre>
+		
+		<pre class="file" id="file26" style="display: none">package util
+
+import (
+        "fmt"
+        "math/rand"
+        "time"
+)
+
+func GenerateCVC() string <span class="cov5" title="4">{
+        return fmt.Sprintf("%03d", rand.Intn(1000)) // 000 - 999
+}</span>
+
+func GenerateAccountNumber() string <span class="cov5" title="4">{
+        rand.Seed(time.Now().UnixNano())
+
+        number := rand.Intn(10000000000)
+        return fmt.Sprintf("%011d", number)
+}</span>
+
+func GenerateExpirationDate() string <span class="cov4" title="3">{
+        now := time.Now()
+        exp := time.Date(now.Year()+3, now.Month(), 1, 0, 0, 0, 0, time.UTC)
+        return exp.Format("2006-01-02")
+}</span>
+
+func GenerateCardNumber() string <span class="cov5" title="4">{
+        var cardNumber string
+        for i := 0; i &lt; 4; i++ </span><span class="cov10" title="16">{
+                part := fmt.Sprintf("%04d", rand.Intn(10000)) // 0000 - 9999
+                if i &gt; 0 </span><span class="cov9" title="12">{
+                        cardNumber += "-"
+                }</span>
+                <span class="cov10" title="16">cardNumber += part</span>
+        }
+        <span class="cov5" title="4">return cardNumber</span>
+}
+</pre>
+		
+		<pre class="file" id="file27" style="display: none">package util
+
+import (
+        "strconv"
+        "strings"
+)
+
+func FormatIDRCurrency(balance string) (string, error) <span class="cov6" title="16">{
+        // Parse the string to float
+        amount, err := strconv.ParseFloat(balance, 64)
+        if err != nil </span><span class="cov1" title="1">{
+                return "", err
+        }</span>
+
+        // Convert to integer (removing decimals)
+        <span class="cov6" title="15">intAmount := int64(amount)
+
+        // Format with dot separator (using strings.Builder for performance)
+        result := formatWithDotSeparator(intAmount)
+
+        return "Rp" + result, nil</span>
+}
+
+func formatWithDotSeparator(n int64) string <span class="cov6" title="15">{
+        s := strconv.FormatInt(n, 10)
+        var result strings.Builder
+
+        // handle the reverse grouping from the right
+        length := len(s)
+        for i, digit := range s </span><span class="cov10" title="95">{
+                if i != 0 &amp;&amp; (length-i)%3 == 0 </span><span class="cov7" title="21">{
+                        result.WriteRune('.')
+                }</span>
+                <span class="cov10" title="95">result.WriteRune(digit)</span>
+        }
+        <span class="cov6" title="15">return result.String()</span>
+}
+</pre>
+		
+		<pre class="file" id="file28" style="display: none">package util
+
+import (
+        "bytes"
+        "context"
+        "fmt"
+
+        "github.com/minio/minio-go/v7"
+        "github.com/minio/minio-go/v7/pkg/credentials"
+)
+
+type IMinioClient interface {
+        Upload(bucketName, objectName string, content []byte) error
+        GetObject(bucketName, objectName string) ([]byte, error)
+        MakeBucket(bucketName string) error
+}
+
+type MinioClient struct {
+        Client *minio.Client
+}
+
+func InitMinio() *minio.Client <span class="cov10" title="3">{
+        endpoint := "localhost:9000"
+        accessKey := "admin"
+        secretKey := "password123"
+        useSSL := false
+
+        minioClient, err := minio.New(endpoint, &amp;minio.Options{
+                Creds:  credentials.NewStaticV4(accessKey, secretKey, ""),
+                Secure: useSSL,
+        })
+        if err != nil </span><span class="cov0" title="0">{
+                fmt.Printf("Error creating MinIO client: %s\n", err)
+        }</span>
+        <span class="cov10" title="3">return minioClient</span>
+}
+
+func (Minio *MinioClient) MakeBucket(bucketName string) error <span class="cov6" title="2">{
+        ctx := context.Background()
+        exists, err := Minio.Client.BucketExists(ctx, bucketName)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov6" title="2">if !exists </span><span class="cov0" title="0">{
+                return Minio.Client.MakeBucket(ctx, bucketName, minio.MakeBucketOptions{})
+        }</span>
+        <span class="cov6" title="2">return nil</span>
+}
+
+func (Minio *MinioClient) Upload(bucketName, objectName string, content []byte) error <span class="cov6" title="2">{
+        ctx := context.Background()
+        reader := bytes.NewReader(content)
+
+        _, err := Minio.Client.PutObject(ctx, bucketName, objectName, reader, int64(len(content)), minio.PutObjectOptions{})
+        return err
+}</span>
+
+func (Minio *MinioClient) GetObject(bucketName, objectName string) ([]byte, error) <span class="cov1" title="1">{
+        ctx := context.Background()
+        object, err := Minio.Client.GetObject(ctx, bucketName, objectName, minio.GetObjectOptions{})
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov1" title="1">defer object.Close()
+
+        buf := new(bytes.Buffer)
+        _, err = buf.ReadFrom(object)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov1" title="1">return buf.Bytes(), nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file29" style="display: none">package routes
+
+import (
+        "yamanmnur/simple-dashboard/internal/handlers"
+        "yamanmnur/simple-dashboard/internal/middlewares"
+
+        "github.com/gofiber/fiber/v2"
+)
+
+func InitAuthRoutes(app *fiber.App, controller *handlers.AuthController) <span class="cov8" title="1">{
+        authRoutes := app.Group("/api/v1/auth")
+        authRoutes.Post("/login", controller.Login)
+        authProfileRoutes := app.Group("/api/v1/auth/profile", middlewares.JwtMiddleware)
+        authProfileRoutes.Get("", controller.Profile)
+}</span>
+</pre>
+		
+		<pre class="file" id="file30" style="display: none">package routes
+
+import (
+        "yamanmnur/simple-dashboard/internal/handlers"
+        "yamanmnur/simple-dashboard/internal/middlewares"
+
+        "github.com/gofiber/fiber/v2"
+)
+
+func InitCustomerRoute(app *fiber.App, controller *handlers.CustomerController) <span class="cov8" title="1">{
+        customerRoutes := app.Group("/api/v1/customer", middlewares.JwtMiddleware)
+        customerRoutes.Get("/list", controller.GetCustomersWithPagination)
+        customerRoutes.Get("/detail/:id", controller.GetCustomerByID)
+        customerRoutes.Post("/create", controller.Create)
+        customerRoutes.Delete("/delete/:id", controller.GetCustomerByID)
+        customerRoutes.Put("/update-photo", controller.UpdatePhotoCustomer)
+        customerRoutes.Post("/upload-photo", controller.UploadPhotoCustomer)
+        customerRoutes.Get("/get-photo", controller.GetPhotoCustomer)
+
+        testFile := app.Group("/api/v1/file/customer")
+        testFile.Get("/photo", controller.GetPhotoCustomer)
+
+}</span>
+</pre>
+		
+		<pre class="file" id="file31" style="display: none">package routes
+
+import (
+        "yamanmnur/simple-dashboard/internal/handlers"
+
+        "github.com/gofiber/fiber/v2"
+)
+
+func InitDashboardRoutes(app *fiber.App, controller *handlers.DashboardController) <span class="cov8" title="1">{
+        authRoutes := app.Group("/api/v1/dashboard")
+        authRoutes.Get("", controller.GetDashboard)
+}</span>
+</pre>
+		
+		<pre class="file" id="file32" style="display: none">package seeder
+
+import (
+        "yamanmnur/simple-dashboard/internal/models"
+        "yamanmnur/simple-dashboard/pkg/db"
+)
+
+func BankAccountSeeder() <span class="cov0" title="0">{
+        bankaccounts := []models.BankAccount{
+                {
+                        CustomerID:     1,
+                        AccountNumber:  "1234567890",
+                        Balance:        1000.50,
+                        AccountType:    "savings",
+                        Cvc:            "456",
+                        ExpirationDate: "2026-01-15",
+                        CardNumber:     "9876-5432-1098-7654",
+                        Status:         models.ACTIVE_BANK_ACCOUNT,
+                },
+                {
+                        CustomerID:     2,
+                        AccountNumber:  "2345678901",
+                        Balance:        2500.75,
+                        AccountType:    "checking",
+                        Cvc:            "789",
+                        ExpirationDate: "2027-03-20",
+                        CardNumber:     "8765-4321-0987-6543",
+                        Status:         models.ACTIVE_BANK_ACCOUNT,
+                },
+                {
+                        CustomerID:     3,
+                        AccountNumber:  "3456789012",
+                        Balance:        500.00,
+                        AccountType:    "savings",
+                        Cvc:            "321",
+                        ExpirationDate: "2025-08-10",
+                        CardNumber:     "7654-3210-9876-5432",
+                        Status:         models.ACTIVE_BANK_ACCOUNT,
+                },
+                {
+                        CustomerID:     4,
+                        AccountNumber:  "4567890123",
+                        Balance:        3000.00,
+                        AccountType:    "checking",
+                        Cvc:            "654",
+                        ExpirationDate: "2026-11-05",
+                        CardNumber:     "6543-2109-8765-4321",
+                        Status:         models.ACTIVE_BANK_ACCOUNT,
+                },
+                {
+                        CustomerID:     5,
+                        AccountNumber:  "5678901234",
+                        Balance:        1500.25,
+                        AccountType:    "savings",
+                        Cvc:            "987",
+                        ExpirationDate: "2027-07-25",
+                        CardNumber:     "5432-1098-7654-3210",
+                        Status:         models.ACTIVE_BANK_ACCOUNT,
+                },
+                {
+                        CustomerID:     6,
+                        AccountNumber:  "6789012345",
+                        Balance:        2000.00,
+                        AccountType:    "checking",
+                        Cvc:            "123",
+                        ExpirationDate: "2025-09-15",
+                        CardNumber:     "4321-0987-6543-2109",
+                        Status:         models.ACTIVE_BANK_ACCOUNT,
+                },
+                {
+                        CustomerID:     7,
+                        AccountNumber:  "7890123456",
+                        Balance:        750.00,
+                        AccountType:    "savings",
+                        Cvc:            "456",
+                        ExpirationDate: "2026-02-28",
+                        CardNumber:     "3210-9876-5432-1098",
+                        Status:         models.ACTIVE_BANK_ACCOUNT,
+                },
+                {
+                        CustomerID:     8,
+                        AccountNumber:  "8901234567",
+                        Balance:        4000.00,
+                        AccountType:    "checking",
+                        Cvc:            "789",
+                        ExpirationDate: "2027-06-30",
+                        CardNumber:     "2109-8765-4321-0987",
+                        Status:         models.ACTIVE_BANK_ACCOUNT,
+                },
+                {
+                        CustomerID:     9,
+                        AccountNumber:  "9012345678",
+                        Balance:        1250.75,
+                        AccountType:    "savings",
+                        Cvc:            "321",
+                        ExpirationDate: "2025-12-01",
+                        CardNumber:     "1098-7654-3210-9876",
+                        Status:         models.ACTIVE_BANK_ACCOUNT,
+                },
+                {
+                        CustomerID:     10,
+                        AccountNumber:  "0123456789",
+                        Balance:        5000.00,
+                        AccountType:    "checking",
+                        Cvc:            "654",
+                        ExpirationDate: "2026-10-10",
+                        CardNumber:     "0987-6543-2109-8765",
+                        Status:         models.ACTIVE_BANK_ACCOUNT,
+                },
+        }
+
+        gormdb := db.GetDbHandler().DB
+        for _, item := range bankaccounts </span><span class="cov0" title="0">{
+                gormdb.FirstOrCreate(&amp;item, models.BankAccount{AccountNumber: item.AccountNumber})
+        }</span>
+}
+</pre>
+		
+		<pre class="file" id="file33" style="display: none">package seeder
+
+import (
+        "yamanmnur/simple-dashboard/internal/models"
+        "yamanmnur/simple-dashboard/pkg/db"
+)
+
+func CustomerSeeder() <span class="cov0" title="0">{
+        customers := []models.Customer{
+                {Name: "Yaman", Email: "yaman@mail.com", PhoneNumber: "1234567890", Address: "123 Street, City, Country", Username: "yaman", Gender: "male", AccountPurpose: "savings", SourceOfIncome: "salary", IncomePerMonth: "5000", Jobs: "developer", Position: "senior developer", Industries: "IT", CompanyName: "Tech Corp", AddressCompany: "456 Tech Street, City, Country"},
+                {Name: "Alice", Email: "alice@mail.com", PhoneNumber: "1234567891", Address: "124 Street, City, Country", Username: "alice", Gender: "female", AccountPurpose: "investment", SourceOfIncome: "business", IncomePerMonth: "7000", Jobs: "entrepreneur", Position: "CEO", Industries: "Retail", CompanyName: "Alice Ventures", AddressCompany: "789 Business Ave, City, Country"},
+                {Name: "Bob", Email: "bob@mail.com", PhoneNumber: "1234567892", Address: "125 Street, City, Country", Username: "bob", Gender: "male", AccountPurpose: "current", SourceOfIncome: "freelancing", IncomePerMonth: "4000", Jobs: "designer", Position: "graphic designer", Industries: "Creative", CompanyName: "Design Studio", AddressCompany: "321 Creative Lane, City, Country"},
+                {Name: "Charlie", Email: "charlie@mail.com", PhoneNumber: "1234567893", Address: "126 Street, City, Country", Username: "charlie", Gender: "male", AccountPurpose: "savings", SourceOfIncome: "salary", IncomePerMonth: "6000", Jobs: "engineer", Position: "software engineer", Industries: "Technology", CompanyName: "Innovatech", AddressCompany: "654 Innovation Blvd, City, Country"},
+                {Name: "David", Email: "david@mail.com", PhoneNumber: "1234567894", Address: "127 Street, City, Country", Username: "david", Gender: "male", AccountPurpose: "investment", SourceOfIncome: "real estate", IncomePerMonth: "8000", Jobs: "investor", Position: "real estate investor", Industries: "Real Estate", CompanyName: "David Properties", AddressCompany: "987 Realty Road, City, Country"},
+                {Name: "Eve", Email: "eve@mail.com", PhoneNumber: "1234567895", Address: "128 Street, City, Country", Username: "eve", Gender: "female", AccountPurpose: "current", SourceOfIncome: "consulting", IncomePerMonth: "5500", Jobs: "consultant", Position: "business consultant", Industries: "Consulting", CompanyName: "Eve Consulting", AddressCompany: "159 Consultant St, City, Country"},
+                {Name: "Frank", Email: "frank@mail.com", PhoneNumber: "1234567896", Address: "129 Street, City, Country", Username: "frank", Gender: "male", AccountPurpose: "savings", SourceOfIncome: "salary", IncomePerMonth: "4500", Jobs: "teacher", Position: "high school teacher", Industries: "Education", CompanyName: "City High School", AddressCompany: "753 Education Lane, City, Country"},
+                {Name: "Grace", Email: "grace@mail.com", PhoneNumber: "1234567897", Address: "130 Street, City, Country", Username: "grace", Gender: "female", AccountPurpose: "investment", SourceOfIncome: "trading", IncomePerMonth: "9000", Jobs: "trader", Position: "stock trader", Industries: "Finance", CompanyName: "Grace Trading Co.", AddressCompany: "246 Finance Blvd, City, Country"},
+                {Name: "Hank", Email: "hank@mail.com", PhoneNumber: "1234567898", Address: "131 Street, City, Country", Username: "hank", Gender: "male", AccountPurpose: "current", SourceOfIncome: "construction", IncomePerMonth: "5000", Jobs: "contractor", Position: "construction manager", Industries: "Construction", CompanyName: "Hank Builders", AddressCompany: "369 Build Ave, City, Country"},
+                {Name: "Ivy", Email: "ivy@mail.com", PhoneNumber: "1234567899", Address: "132 Street, City, Country", Username: "ivy", Gender: "female", AccountPurpose: "savings", SourceOfIncome: "freelancing", IncomePerMonth: "4800", Jobs: "writer", Position: "content writer", Industries: "Media", CompanyName: "Ivy Media", AddressCompany: "951 Media Lane, City, Country"},
+        }
+
+        gormdb := db.GetDbHandler().DB
+        for _, customer := range customers </span><span class="cov0" title="0">{
+                gormdb.FirstOrCreate(&amp;customer, models.Customer{Email: customer.Email})
+        }</span>
+}
+</pre>
+		
+		<pre class="file" id="file34" style="display: none">package seeder
+
+func InitSeed() <span class="cov0" title="0">{
+        UserSeeder()
+        CustomerSeeder()
+        BankAccountSeeder()
+        PocketSeeder()
+        TermDepositTypesSeeder()
+        TermDepositSeeder()
+}</span>
+</pre>
+		
+		<pre class="file" id="file35" style="display: none">package seeder
+
+import (
+        "yamanmnur/simple-dashboard/internal/models"
+        "yamanmnur/simple-dashboard/pkg/db"
+)
+
+func PocketSeeder() <span class="cov0" title="0">{
+        pockets := []models.Pocket{
+                {
+                        CustomerID: 1,
+                        Name:       "Savings",
+                        Balance:    1000.50,
+                        Currency:   "USD",
+                },
+                {
+                        CustomerID: 2,
+                        Name:       "Travel Fund",
+                        Balance:    500.00,
+                        Currency:   "EUR",
+                },
+                {
+                        CustomerID: 3,
+                        Name:       "Emergency Fund",
+                        Balance:    2000.00,
+                        Currency:   "USD",
+                },
+                {
+                        CustomerID: 4,
+                        Name:       "Investment",
+                        Balance:    1500.75,
+                        Currency:   "GBP",
+                },
+                {
+                        CustomerID: 5,
+                        Name:       "Education",
+                        Balance:    3000.00,
+                        Currency:   "USD",
+                },
+                {
+                        CustomerID: 6,
+                        Name:       "Health Savings",
+                        Balance:    1200.00,
+                        Currency:   "USD",
+                },
+                {
+                        CustomerID: 7,
+                        Name:       "Vacation",
+                        Balance:    800.00,
+                        Currency:   "CAD",
+                },
+                {
+                        CustomerID: 8,
+                        Name:       "Car Fund",
+                        Balance:    2500.00,
+                        Currency:   "USD",
+                },
+                {
+                        CustomerID: 9,
+                        Name:       "Home Renovation",
+                        Balance:    4000.00,
+                        Currency:   "AUD",
+                },
+                {
+                        CustomerID: 10,
+                        Name:       "Wedding Fund",
+                        Balance:    3500.00,
+                        Currency:   "USD",
+                },
+        }
+
+        gormdb := db.GetDbHandler().DB
+
+        var count int64
+        gormdb.Model(&amp;models.Pocket{}).Count(&amp;count)
+        if count == 0 </span><span class="cov0" title="0">{
+                for _, item := range pockets </span><span class="cov0" title="0">{
+                        gormdb.Create(&amp;item)
+                }</span>
+        }
+}
+</pre>
+		
+		<pre class="file" id="file36" style="display: none">package seeder
+
+import (
+        "yamanmnur/simple-dashboard/internal/models"
+        "yamanmnur/simple-dashboard/pkg/db"
+)
+
+func TermDepositTypesSeeder() <span class="cov0" title="0">{
+        termDepositsTypes := []models.TermDepositsTypes{
+                {
+                        Name:          "7 Days",
+                        InterestRate:  0.5,
+                        MinAmount:     0,
+                        MaxAmount:     1000000,
+                        TermDays:      7,
+                        EffectiveDate: "2023-01-01",
+                        Status:        "active",
+                },
+                {
+                        Name:          "14 Days",
+                        InterestRate:  0.6,
+                        MinAmount:     0,
+                        MaxAmount:     1000000,
+                        TermDays:      14,
+                        EffectiveDate: "2023-01-01",
+                        Status:        "active",
+                },
+                {
+                        Name:          "1 Month",
+                        InterestRate:  7.5,
+                        MinAmount:     500000,
+                        MaxAmount:     1000000000,
+                        TermDays:      30,
+                        EffectiveDate: "2023-01-01",
+                        Status:        "active",
+                },
+                {
+                        Name:          "3 Months",
+                        InterestRate:  7.5,
+                        MinAmount:     500000,
+                        MaxAmount:     1000000000,
+                        TermDays:      90,
+                        EffectiveDate: "2023-01-01",
+                        Status:        "active",
+                },
+                {
+                        Name:          "6 Months",
+                        InterestRate:  7.5,
+                        MinAmount:     500000,
+                        MaxAmount:     1000000000,
+                        TermDays:      180,
+                        EffectiveDate: "2023-01-01",
+                        Status:        "active",
+                },
+                {
+                        Name:          "9 Months",
+                        InterestRate:  7.5,
+                        MinAmount:     500000,
+                        MaxAmount:     1000000000,
+                        TermDays:      270,
+                        EffectiveDate: "2023-01-01",
+                        Status:        "active",
+                },
+                {
+                        Name:          "12 Months",
+                        InterestRate:  7.5,
+                        MinAmount:     500000,
+                        MaxAmount:     1000000000,
+                        TermDays:      365,
+                        EffectiveDate: "2023-01-01",
+                        Status:        "active",
+                },
+                {
+                        Name:          "1 Month",
+                        InterestRate:  6.5,
+                        MinAmount:     1000000001,
+                        MaxAmount:     0,
+                        TermDays:      30,
+                        EffectiveDate: "2023-01-01",
+                        Status:        "active",
+                },
+                {
+                        Name:          "3 Months",
+                        InterestRate:  6.5,
+                        MinAmount:     1000000001,
+                        MaxAmount:     0,
+                        TermDays:      90,
+                        EffectiveDate: "2023-01-01",
+                        Status:        "active",
+                },
+                {
+                        Name:          "6 Months",
+                        InterestRate:  6.5,
+                        MinAmount:     1000000001,
+                        MaxAmount:     0,
+                        TermDays:      180,
+                        EffectiveDate: "2023-01-01",
+                        Status:        "active",
+                },
+                {
+                        Name:          "9 Months",
+                        InterestRate:  6.5,
+                        MinAmount:     1000000001,
+                        MaxAmount:     0,
+                        TermDays:      270,
+                        EffectiveDate: "2023-01-01",
+                        Status:        "active",
+                },
+                {
+                        Name:          "12 Months",
+                        InterestRate:  6.5,
+                        MinAmount:     1000000001,
+                        MaxAmount:     0,
+                        TermDays:      365,
+                        EffectiveDate: "2023-01-01",
+                        Status:        "active",
+                },
+        }
+
+        gormdb := db.GetDbHandler().DB
+
+        var count int64
+        gormdb.Model(&amp;models.TermDepositsTypes{}).Count(&amp;count)
+        if count == 0 </span><span class="cov0" title="0">{
+                for _, item := range termDepositsTypes </span><span class="cov0" title="0">{
+                        gormdb.Create(&amp;item)
+                }</span>
+        }
+}
+</pre>
+		
+		<pre class="file" id="file37" style="display: none">package seeder
+
+import (
+        "yamanmnur/simple-dashboard/internal/models"
+        "yamanmnur/simple-dashboard/pkg/db"
+)
+
+func TermDepositSeeder() <span class="cov0" title="0">{
+        gormdb := db.GetDbHandler().DB
+        var defaultTermDepositTypes models.TermDepositsTypes
+        gormdb.Model(&amp;models.TermDepositsTypes{}).Where("id = ?", 1).First(&amp;defaultTermDepositTypes)
+        termdeposits := []models.TermDeposit{
+                {
+                        CustomerID:            1,
+                        BankAccountID:         1,
+                        Amount:                10000.00,
+                        InterestRate:          3.50,
+                        StartDate:             "2023-01-01",
+                        MaturityDate:          "2024-01-01",
+                        Status:                models.ACTIVE,
+                        ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
+                        TermDepositsType:      defaultTermDepositTypes,
+                },
+                {
+                        CustomerID:            2,
+                        BankAccountID:         2,
+                        Amount:                15000.00,
+                        InterestRate:          4.00,
+                        StartDate:             "2023-02-01",
+                        MaturityDate:          "2024-02-01",
+                        Status:                models.ACTIVE,
+                        ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
+                        TermDepositsType:      defaultTermDepositTypes,
+                },
+                {
+                        CustomerID:            3,
+                        BankAccountID:         3,
+                        Amount:                20000.00,
+                        InterestRate:          3.75,
+                        StartDate:             "2023-03-01",
+                        MaturityDate:          "2024-03-01",
+                        Status:                models.ACTIVE,
+                        ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
+                        TermDepositsType:      defaultTermDepositTypes,
+                },
+                {
+                        CustomerID:            4,
+                        BankAccountID:         4,
+                        Amount:                25000.00,
+                        InterestRate:          4.25,
+                        StartDate:             "2023-04-01",
+                        MaturityDate:          "2024-04-01",
+                        Status:                models.ACTIVE,
+                        ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
+                        TermDepositsType:      defaultTermDepositTypes,
+                },
+                {
+                        CustomerID:            5,
+                        BankAccountID:         5,
+                        Amount:                30000.00,
+                        InterestRate:          3.90,
+                        StartDate:             "2023-05-01",
+                        MaturityDate:          "2024-05-01",
+                        Status:                models.ACTIVE,
+                        ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
+                        TermDepositsType:      defaultTermDepositTypes,
+                },
+                {
+                        CustomerID:            6,
+                        BankAccountID:         6,
+                        Amount:                35000.00,
+                        InterestRate:          4.10,
+                        StartDate:             "2023-06-01",
+                        MaturityDate:          "2024-06-01",
+                        Status:                models.ACTIVE,
+                        ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
+                        TermDepositsType:      defaultTermDepositTypes,
+                },
+                {
+                        CustomerID:            7,
+                        BankAccountID:         7,
+                        Amount:                40000.00,
+                        InterestRate:          3.80,
+                        StartDate:             "2023-07-01",
+                        MaturityDate:          "2024-07-01",
+                        Status:                models.ACTIVE,
+                        ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
+                        TermDepositsType:      defaultTermDepositTypes,
+                },
+                {
+                        CustomerID:            8,
+                        BankAccountID:         8,
+                        Amount:                45000.00,
+                        InterestRate:          4.20,
+                        StartDate:             "2023-08-01",
+                        MaturityDate:          "2024-08-01",
+                        Status:                models.ACTIVE,
+                        ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
+                        TermDepositsType:      defaultTermDepositTypes,
+                },
+                {
+                        CustomerID:            9,
+                        BankAccountID:         9,
+                        Amount:                50000.00,
+                        InterestRate:          3.95,
+                        StartDate:             "2023-09-01",
+                        MaturityDate:          "2024-09-01",
+                        Status:                models.ACTIVE,
+                        ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
+                        TermDepositsType:      defaultTermDepositTypes,
+                },
+                {
+                        CustomerID:            10,
+                        BankAccountID:         10,
+                        Amount:                55000.00,
+                        InterestRate:          4.30,
+                        StartDate:             "2023-10-01",
+                        MaturityDate:          "2024-10-01",
+                        Status:                models.ACTIVE,
+                        ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
+                        TermDepositsType:      defaultTermDepositTypes,
+                },
+        }
+
+        var count int64
+        gormdb.Model(&amp;models.TermDeposit{}).Count(&amp;count)
+        if count == 0 </span><span class="cov0" title="0">{
+                for _, item := range termdeposits </span><span class="cov0" title="0">{
+                        gormdb.Create(&amp;item)
+                }</span>
+        }
+}
+</pre>
+		
+		<pre class="file" id="file38" style="display: none">package seeder
+
+import (
+        "yamanmnur/simple-dashboard/internal/models"
+        "yamanmnur/simple-dashboard/internal/services"
+        "yamanmnur/simple-dashboard/pkg/db"
+)
+
+func UserSeeder() <span class="cov0" title="0">{
+        pass, _ := services.HashPassword("password")
+        users := []models.User{
+                {Name: "Yaman", Username: "yaman", Password: pass},
+        }
+        gormdb := db.GetDbHandler().DB
+        for _, user := range users </span><span class="cov0" title="0">{
+                gormdb.FirstOrCreate(&amp;user, models.User{Username: user.Username})
+        }</span>
+}
+</pre>
+		
+		<pre class="file" id="file39" style="display: none">package mocks_test
+
+import (
+        "yamanmnur/simple-dashboard/internal/dto/data"
+        "yamanmnur/simple-dashboard/internal/models"
+        pkg_data "yamanmnur/simple-dashboard/pkg/data"
+        pkg_requests "yamanmnur/simple-dashboard/pkg/requests"
+
+        "github.com/stretchr/testify/mock"
+)
+
+type MockCustomerRepository struct {
+        mock.Mock
+}
+
+func (m *MockCustomerRepository) FindById(id uint) (models.Customer, error) <span class="cov10" title="3">{
+        args := m.Called(id)
+        return args.Get(0).(models.Customer), args.Error(1)
+}</span>
+
+func (m *MockCustomerRepository) Detail(id uint, detail_data *models.Customer) error <span class="cov10" title="3">{
+        args := m.Called(id, detail_data)
+        return args.Error(0)
+}</span>
+
+func (m *MockCustomerRepository) Create(customerData *models.Customer) error <span class="cov6" title="2">{
+        args := m.Called(customerData)
+        return args.Error(0)
+}</span>
+
+func (m *MockCustomerRepository) Update(customerData *data.CustomerData) (models.Customer, error) <span class="cov6" title="2">{
+        args := m.Called(customerData)
+        return args.Get(0).(models.Customer), args.Error(1)
+}</span>
+
+func (m *MockCustomerRepository) UpdatePatch(customerData *data.CustomerData) (models.Customer, error) <span class="cov6" title="2">{
+        args := m.Called(customerData)
+        return args.Get(0).(models.Customer), args.Error(1)
+}</span>
+
+func (m *MockCustomerRepository) Delete(id uint) error <span class="cov6" title="2">{
+        args := m.Called(id)
+        return args.Error(0)
+}</span>
+
+func (m *MockCustomerRepository) GetCustomersWithPagination(pageRequest pkg_requests.PageRequest) (pkg_data.PaginateData[data.CustomerData], error) <span class="cov6" title="2">{
+        args := m.Called(pageRequest)
+        return args.Get(0).(pkg_data.PaginateData[data.CustomerData]), args.Error(1)
+}</span>
+</pre>
+		
+		<pre class="file" id="file40" style="display: none">package mocks_test
+
+import (
+        "github.com/stretchr/testify/mock"
+)
+
+type MockMinioClient struct {
+        mock.Mock
+}
+
+func (m *MockMinioClient) Upload(bucketName, objectName string, content []byte) error <span class="cov8" title="3">{
+        args := m.Called(bucketName, objectName, content)
+        return args.Error(0)
+}</span>
+
+func (m *MockMinioClient) GetObject(bucketName, objectName string) ([]byte, error) <span class="cov5" title="2">{
+        args := m.Called(bucketName, objectName)
+        return args.Get(0).([]byte), args.Error(1)
+}</span>
+
+func (m *MockMinioClient) MakeBucket(bucketName string) error <span class="cov10" title="4">{
+        args := m.Called(bucketName)
+        return args.Error(0)
+}</span>
+</pre>
+		
+		<pre class="file" id="file41" style="display: none">package mocks_test
+
+import (
+        "yamanmnur/simple-dashboard/internal/dto/data"
+        "yamanmnur/simple-dashboard/internal/models"
+
+        "github.com/stretchr/testify/mock"
+)
+
+// MockUserRepository is a mock implementation of IUserRepository
+type MockUserRepository struct {
+        mock.Mock
+}
+
+func (m *MockUserRepository) FindById(id uint) (models.User, error) <span class="cov10" title="2">{
+        args := m.Called(id)
+        return args.Get(0).(models.User), args.Error(1)
+}</span>
+
+func (m *MockUserRepository) FindByUsername(username string) (models.User, error) <span class="cov10" title="2">{
+        args := m.Called(username)
+        return args.Get(0).(models.User), args.Error(1)
+}</span>
+
+func (m *MockUserRepository) Create(userData data.UserData) (models.User, error) <span class="cov10" title="2">{
+        args := m.Called(userData)
+        return args.Get(0).(models.User), args.Error(1)
+}</span>
+
+func (m *MockUserRepository) Update(userData data.UserData) (models.User, error) <span class="cov10" title="2">{
+        args := m.Called(userData)
+        return args.Get(0).(models.User), args.Error(1)
+}</span>
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>
