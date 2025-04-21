@@ -111,7 +111,7 @@
 				
 				<option value="file27">yamanmnur/simple-dashboard/pkg/util/format_currency.go (100.0%)</option>
 				
-				<option value="file28">yamanmnur/simple-dashboard/pkg/util/minio_client.go (82.8%)</option>
+				<option value="file28">yamanmnur/simple-dashboard/pkg/util/minio_client.go (86.2%)</option>
 				
 				<option value="file29">yamanmnur/simple-dashboard/routes/auth_routes.go (100.0%)</option>
 				
@@ -167,8 +167,8 @@ import (
 )
 
 type Login struct {
-        Username string
-        Password string
+        Username string `json:"username"`
+        Password string `json:"password"`
 }
 
 func (r Login) Validate() error <span class="cov10" title="6">{
@@ -793,6 +793,7 @@ func (repository *CustomerRepository) Detail(id uint, detail_data *models.Custom
                 Where("customers.id = ?", id).
                 Preload("BankAccounts").
                 Preload("BankAccounts.TermDeposit").
+                Preload("BankAccounts.TermDeposit.TermDepositsType").
                 Preload("Pockets").
                 First(&amp;detail_data).Error
         if err != nil </span><span class="cov5" title="2">{
@@ -1159,7 +1160,6 @@ func (service *AuthService) GenerateToken(userId string) (string, error) <span c
                 "roles": []string{"admin"},
         }
         token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-        // Add "kid" to the header
         token.Header["kid"] = "sim2"
         signedToken, _ := token.SignedString(secretKeyByte)
 
@@ -1307,9 +1307,14 @@ func (service *CustomerService) Detail(id uint) (data.CustomerDetailData, error)
 
         <span class="cov4" title="2">bank := customer.BankAccounts[0]
         totalBalance += bank.Balance
-
         result.TotalBalance = fmt.Sprintf("%.2f", totalBalance)
         result.TotalPockets = fmt.Sprintf("%.2f", totalPockets)
+
+        formatTotalPockets, _ := util.FormatIDRCurrency(result.TotalPockets)
+        result.TotalPockets = formatTotalPockets
+
+        formatTotalBalance, _ := util.FormatIDRCurrency(result.TotalBalance)
+        result.TotalBalance = formatTotalBalance
 
         result.Banks = data.BankAccountData{
                 Id:             bank.ID,
@@ -1343,6 +1348,8 @@ func (service *CustomerService) Detail(id uint) (data.CustomerDetailData, error)
         }</span>
 
         <span class="cov4" title="2">result.TotalDeposits = fmt.Sprintf("%.2f", totalDeposits)
+        formatTotalDeposits, _ := util.FormatIDRCurrency(result.TotalDeposits)
+        result.TotalDeposits = formatTotalDeposits
 
         return result, nil</span>
 }
@@ -1688,7 +1695,6 @@ func main() <span class="cov0" title="0">{
 
         client := util.InitMinio()
 
-        // init singleton DBHandler
         db.InitInstanceDbHandler(&amp;db.IDbHandler{
                 DB: dbHandler,
         })
@@ -1699,13 +1705,11 @@ func main() <span class="cov0" title="0">{
                 return middlewares.ErrorHandler(ctx, ctx.Next())
         }</span>)
 
-        // Init Singleton for Service and Repository
         <span class="cov0" title="0">injectors.InitDI(app, db.GetDbHandler(), client)
 
-        // Init Seeder
         seeder.InitSeed()
 
-        app.Listen(fmt.Sprintf("127.0.0.1:%s", APP_PORT))</span>
+        app.Listen(fmt.Sprintf(":%s", APP_PORT))</span>
 }
 </pre>
 		
@@ -1917,35 +1921,31 @@ import (
         "strings"
 )
 
-func FormatIDRCurrency(balance string) (string, error) <span class="cov6" title="16">{
-        // Parse the string to float
+func FormatIDRCurrency(balance string) (string, error) <span class="cov7" title="28">{
         amount, err := strconv.ParseFloat(balance, 64)
         if err != nil </span><span class="cov1" title="1">{
                 return "", err
         }</span>
 
-        // Convert to integer (removing decimals)
-        <span class="cov6" title="15">intAmount := int64(amount)
+        <span class="cov6" title="27">intAmount := int64(amount)
 
-        // Format with dot separator (using strings.Builder for performance)
         result := formatWithDotSeparator(intAmount)
 
         return "Rp" + result, nil</span>
 }
 
-func formatWithDotSeparator(n int64) string <span class="cov6" title="15">{
+func formatWithDotSeparator(n int64) string <span class="cov6" title="27">{
         s := strconv.FormatInt(n, 10)
         var result strings.Builder
 
-        // handle the reverse grouping from the right
         length := len(s)
-        for i, digit := range s </span><span class="cov10" title="95">{
-                if i != 0 &amp;&amp; (length-i)%3 == 0 </span><span class="cov7" title="21">{
+        for i, digit := range s </span><span class="cov10" title="143">{
+                if i != 0 &amp;&amp; (length-i)%3 == 0 </span><span class="cov7" title="29">{
                         result.WriteRune('.')
                 }</span>
-                <span class="cov10" title="95">result.WriteRune(digit)</span>
+                <span class="cov10" title="143">result.WriteRune(digit)</span>
         }
-        <span class="cov6" title="15">return result.String()</span>
+        <span class="cov6" title="27">return result.String()</span>
 }
 </pre>
 		
@@ -1958,6 +1958,7 @@ import (
 
         "github.com/minio/minio-go/v7"
         "github.com/minio/minio-go/v7/pkg/credentials"
+        "github.com/spf13/viper"
 )
 
 type IMinioClient interface {
@@ -1971,9 +1972,10 @@ type MinioClient struct {
 }
 
 func InitMinio() *minio.Client <span class="cov10" title="3">{
-        endpoint := "localhost:9000"
-        accessKey := "admin"
-        secretKey := "password123"
+        endpoint := viper.Get("APP_MINIO_HOST").(string)
+        accessKey := viper.Get("APP_MINIO_USERNAME").(string)
+        secretKey := viper.Get("APP_MINIO_PASSWORD").(string)
+
         useSSL := false
 
         minioClient, err := minio.New(endpoint, &amp;minio.Options{
@@ -1992,10 +1994,10 @@ func (Minio *MinioClient) MakeBucket(bucketName string) error <span class="cov6"
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov6" title="2">if !exists </span><span class="cov0" title="0">{
+        <span class="cov6" title="2">if !exists </span><span class="cov1" title="1">{
                 return Minio.Client.MakeBucket(ctx, bucketName, minio.MakeBucketOptions{})
         }</span>
-        <span class="cov6" title="2">return nil</span>
+        <span class="cov1" title="1">return nil</span>
 }
 
 func (Minio *MinioClient) Upload(bucketName, objectName string, content []byte) error <span class="cov6" title="2">{
@@ -2473,7 +2475,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-01-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    1,
                 },
                 {
                         CustomerID:            2,
@@ -2484,7 +2486,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-02-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    2,
                 },
                 {
                         CustomerID:            3,
@@ -2495,7 +2497,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-03-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    3,
                 },
                 {
                         CustomerID:            4,
@@ -2506,7 +2508,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-04-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    4,
                 },
                 {
                         CustomerID:            5,
@@ -2517,7 +2519,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-05-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    5,
                 },
                 {
                         CustomerID:            6,
@@ -2528,7 +2530,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-06-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    6,
                 },
                 {
                         CustomerID:            7,
@@ -2539,7 +2541,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-07-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    7,
                 },
                 {
                         CustomerID:            8,
@@ -2550,7 +2552,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-08-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    8,
                 },
                 {
                         CustomerID:            9,
@@ -2561,7 +2563,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-09-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    9,
                 },
                 {
                         CustomerID:            10,
@@ -2692,7 +2694,6 @@ import (
         "github.com/stretchr/testify/mock"
 )
 
-// MockUserRepository is a mock implementation of IUserRepository
 type MockUserRepository struct {
         mock.Mock
 }
