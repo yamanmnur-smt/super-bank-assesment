@@ -559,7 +559,6 @@ func TestCustomerService_UploadPhotoCustomer(t *testing.T) {
 		mockRepo := new(mocks_test.MockCustomerRepository)
 		mockMinio := new(mocks_test.MockMinioClient)
 		service := services.CustomerService{Repository: mockRepo, MinioClient: mockMinio}
-		mockMinio.On("Upload", "customer", "test-customer.txt", []byte("unit test content")).Return(nil)
 
 		// Call the service method
 		location, err := service.UploadPhotoCustomer("http://localhost:3001", mockFile)
@@ -567,7 +566,6 @@ func TestCustomerService_UploadPhotoCustomer(t *testing.T) {
 		// Assertions
 		assert.Error(t, err)
 		assert.Equal(t, "", location)
-		assert.EqualError(t, err, "open : The system cannot find the file specified.")
 	})
 
 	t.Run("UploadPhotoCustomer() IO Copy Error", func(t *testing.T) {

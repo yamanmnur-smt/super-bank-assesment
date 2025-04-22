@@ -93,20 +93,34 @@ http://localhost:9001
 2. Install for Backend
 
 ## Generate Test Coverage Backend
-1. Generate Coverage
+
+1. Up container minio from docker compose
     ```
-    cd backend 
-    go test ./... -coverprofile ./cover.out -covermode atomic -coverpkg ./...
+    docker-compose up --build minio -d
     ```
-2. Generate visualize Coverage
+1. Generate Coverage with docker-compose
     ```
-    cd backend
-    go tool cover -html cover.out -o cover.html
+    docker-compose up --build customerbackend-test -d
+    ```
+2. Get cover.out and cover.html file from container
+    ```
+    docker cp customerbackend-test:/app/cover.out ./coverage/cover.out
+    docker cp customerbackend-test:/app/cover.html ./coverage/cover.html
     ```
 3. Get Total Coverage
     ```
-    cd backend
-    go tool cover -func cover.out
+    docker cp customerbackend-test:/app/coverage_percentage.txt ./backend/coverage_percentage.txt
+
+    or just show result after copy cover.out
+    
+    # On Powershell
+    go tool cover -func cover.out |  Select-String 'total:'
+    
+    # On Unix
+    go tool cover -func cover.out | grep total:
+
+    # On CMD
+    go tool cover -func cover.out | findstr total:
     ```
 ## Test Threshold Backend Using Github Action
 1. Generate cover.out First

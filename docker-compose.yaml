@@ -1,6 +1,15 @@
 version: '3'
 
 services:
+  customerbackend-test:
+    container_name: customerbackend-test
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile-Test
+    networks:
+      - app-network
+    profiles:
+      - optional
   customerbackend:
     container_name: customerbackend
     depends_on:

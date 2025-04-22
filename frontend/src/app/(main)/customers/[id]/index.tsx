@@ -244,8 +244,6 @@ const CustomerDetailComponent = () => {
                 <th className="py-2 px-3 text-left">Start Date</th>
                 <th className="py-2 px-3 text-left">Maturity Date</th>
                 <th className="py-2 px-3 text-left">Extension Instructions</th>
-                <th className="py-2 px-3 text-left ">Status</th>
-                <th className="py-2 px-3 text-left rounded-tr-lg ">Action</th>
               </tr>
             </thead>
             <tbody className="text-gray-700">
@@ -257,16 +255,7 @@ const CustomerDetailComponent = () => {
                   <td className="py-3 px-6">{item.start_date}</td>
                   <td className="py-3 px-6">{item.maturity_date}</td>
                   <td className="py-3 px-6">{item.extension_instructions}</td>
-                  <td className="py-3 px-6">
-                    <span className="inline-block px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full">
-                      {item.status}
-                    </span>
-                  </td>
-                  <td className="py-3 px-6">
-                    <button className="cursor-pointer  px-2 py-1  text-[#a3b18a] bg-[#f5ebe0] rounded-full">
-                      <Eye />
-                    </button>
-                  </td>
+                  
                 </tr>
               ))}
             </tbody>
