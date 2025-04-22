@@ -77,17 +77,17 @@
 				
 				<option value="file10">yamanmnur/simple-dashboard/internal/injectors/user_injector.go (100.0%)</option>
 				
-				<option value="file11">yamanmnur/simple-dashboard/internal/middlewares/error_handler.go (87.1%)</option>
+				<option value="file11">yamanmnur/simple-dashboard/internal/middlewares/error_handler.go (100.0%)</option>
 				
-				<option value="file12">yamanmnur/simple-dashboard/internal/middlewares/jwt_middlewares.go (93.3%)</option>
+				<option value="file12">yamanmnur/simple-dashboard/internal/middlewares/jwt_middlewares.go (100.0%)</option>
 				
 				<option value="file13">yamanmnur/simple-dashboard/internal/repositories/customer_repository.go (100.0%)</option>
 				
 				<option value="file14">yamanmnur/simple-dashboard/internal/repositories/dashboard_repository.go (100.0%)</option>
 				
-				<option value="file15">yamanmnur/simple-dashboard/internal/repositories/user_repository.go (92.6%)</option>
+				<option value="file15">yamanmnur/simple-dashboard/internal/repositories/user_repository.go (100.0%)</option>
 				
-				<option value="file16">yamanmnur/simple-dashboard/internal/services/auth_service.go (93.5%)</option>
+				<option value="file16">yamanmnur/simple-dashboard/internal/services/auth_service.go (100.0%)</option>
 				
 				<option value="file17">yamanmnur/simple-dashboard/internal/services/customer_service.go (99.1%)</option>
 				
@@ -111,7 +111,7 @@
 				
 				<option value="file27">yamanmnur/simple-dashboard/pkg/util/format_currency.go (100.0%)</option>
 				
-				<option value="file28">yamanmnur/simple-dashboard/pkg/util/minio_client.go (86.2%)</option>
+				<option value="file28">yamanmnur/simple-dashboard/pkg/util/minio_client.go (82.8%)</option>
 				
 				<option value="file29">yamanmnur/simple-dashboard/routes/auth_routes.go (100.0%)</option>
 				
@@ -674,8 +674,8 @@ import (
         "gorm.io/gorm"
 )
 
-func ErrorHandler(ctx *fiber.Ctx, err error) error <span class="cov10" title="19">{
-        if err != nil </span><span class="cov8" title="13">{
+func ErrorHandler(ctx *fiber.Ctx, err error) error <span class="cov10" title="21">{
+        if err != nil </span><span class="cov9" title="15">{
 
                 var statusCode int
                 var message string
@@ -687,27 +687,27 @@ func ErrorHandler(ctx *fiber.Ctx, err error) error <span class="cov10" title="19
                 if errors.Is(err, gorm.ErrRecordNotFound) </span><span class="cov1" title="1">{
                         statusCode = http.StatusNotFound
                         message = "Record not found"
-                }</span> else<span class="cov8" title="12"> if errors.As(err, &amp;invalidReqPayloadError) </span><span class="cov6" title="6">{
+                }</span> else<span class="cov8" title="14"> if errors.As(err, &amp;invalidReqPayloadError) </span><span class="cov6" title="6">{
                         statusCode = http.StatusBadRequest
                         message = err.Error()
-                }</span> else<span class="cov6" title="6"> if err.Error() == missionUserId.Error() </span><span class="cov1" title="1">{
+                }</span> else<span class="cov7" title="8"> if err.Error() == missionUserId.Error() </span><span class="cov1" title="1">{
                         statusCode = http.StatusUnauthorized
                         message = err.Error()
-                }</span> else<span class="cov5" title="5"> if err.Error() == invalidUserId.Error() </span><span class="cov1" title="1">{
+                }</span> else<span class="cov6" title="7"> if err.Error() == invalidUserId.Error() </span><span class="cov1" title="1">{
                         statusCode = http.StatusBadRequest
                         message = err.Error()
-                }</span> else<span class="cov5" title="4"> if err.Error() == missingPayload.Error() </span><span class="cov0" title="0">{
+                }</span> else<span class="cov6" title="6"> if err.Error() == missingPayload.Error() </span><span class="cov1" title="1">{
                         statusCode = http.StatusBadRequest
                         message = err.Error()
-                }</span> else<span class="cov5" title="4"> if err.Error() == credentialWrong.Error() </span><span class="cov0" title="0">{
+                }</span> else<span class="cov5" title="5"> if err.Error() == credentialWrong.Error() </span><span class="cov1" title="1">{
                         statusCode = http.StatusBadRequest
-                        message = "Credential Wrong"
+                        message = "credential wrong"
                 }</span> else<span class="cov5" title="4"> {
                         statusCode = http.StatusInternalServerError
                         message = err.Error()
                 }</span>
 
-                <span class="cov8" title="13">response := pkg_response.BasicResponse{
+                <span class="cov9" title="15">response := pkg_response.BasicResponse{
                         MetaData: pkg_response.MetaData{
                                 Status:  "error",
                                 Message: message,
@@ -730,7 +730,7 @@ import (
         "github.com/spf13/viper"
 )
 
-func JwtMiddleware(c *fiber.Ctx) error <span class="cov10" title="3">{
+func JwtMiddleware(c *fiber.Ctx) error <span class="cov10" title="4">{
         secretKey := viper.Get("APP_SECRET_KEY").(string)
         secretKeyByte := []byte(secretKey)
         authHeader := c.Get("Authorization")
@@ -741,16 +741,16 @@ func JwtMiddleware(c *fiber.Ctx) error <span class="cov10" title="3">{
                 })
         }</span>
 
-        <span class="cov6" title="2">tokenStr := authHeader[len("Bearer "):]
+        <span class="cov8" title="3">tokenStr := authHeader[len("Bearer "):]
 
-        token, err := jwt.Parse(tokenStr, func(t *jwt.Token) (interface{}, error) </span><span class="cov1" title="1">{
-                if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok </span><span class="cov0" title="0">{
+        token, err := jwt.Parse(tokenStr, func(t *jwt.Token) (interface{}, error) </span><span class="cov5" title="2">{
+                if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok </span><span class="cov1" title="1">{
                         return nil, fiber.ErrUnauthorized
                 }</span>
                 <span class="cov1" title="1">return secretKeyByte, nil</span>
         })
 
-        <span class="cov6" title="2">if err != nil || !token.Valid </span><span class="cov1" title="1">{
+        <span class="cov8" title="3">if err != nil || !token.Valid </span><span class="cov5" title="2">{
                 return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
                         "error": "Invalid token",
                 })
@@ -1042,8 +1042,6 @@ import (
         "yamanmnur/simple-dashboard/internal/dto/data"
         "yamanmnur/simple-dashboard/internal/models"
         "yamanmnur/simple-dashboard/pkg/db"
-
-        "gorm.io/gorm"
 )
 
 type IUserRepository interface {
@@ -1064,16 +1062,14 @@ func (repository *UserRepository) FindById(id uint) (models.User, error) <span c
         return user, nil
 }</span>
 
-func (repository *UserRepository) FindByUsername(username string) (models.User, error) <span class="cov1" title="1">{
+func (repository *UserRepository) FindByUsername(username string) (models.User, error) <span class="cov6" title="2">{
         var user models.User
 
         result := repository.DB.Raw("SELECT * FROM users WHERE username = ?", username).Scan(&amp;user)
-        if result.Error != nil </span><span class="cov0" title="0">{
+        if result.Error != nil </span><span class="cov1" title="1">{
                 return models.User{}, result.Error
         }</span>
-        <span class="cov1" title="1">if result.RowsAffected == 0 </span><span class="cov0" title="0">{
-                return models.User{}, gorm.ErrRecordNotFound
-        }</span>
+
         <span class="cov1" title="1">return user, nil</span>
 }
 
@@ -1132,13 +1128,10 @@ type IAuthService interface {
         GenerateToken(userId string) (string, error)
 }
 
-func HashPassword(password string) (string, error) <span class="cov1" title="1">{
-        hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-        if err != nil </span><span class="cov0" title="0">{
-                return "", err
-        }</span>
-        <span class="cov1" title="1">return string(hash), nil</span>
-}
+func HashPassword(password string) (string, error) <span class="cov6" title="2">{
+        hash, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+        return string(hash), nil
+}</span>
 
 func checkPassword(hashedPassword, inputPassword string) bool <span class="cov6" title="2">{
         err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(inputPassword))
@@ -1167,7 +1160,7 @@ func (service *AuthService) GenerateToken(userId string) (string, error) <span c
 
 }</span>
 
-func (service *AuthService) Register(request *requests.Register) (data.JwtToken, error) <span class="cov1" title="1">{
+func (service *AuthService) Register(request *requests.Register) (data.JwtToken, error) <span class="cov6" title="2">{
 
         password, _ := HashPassword(request.Password)
 
@@ -1177,7 +1170,7 @@ func (service *AuthService) Register(request *requests.Register) (data.JwtToken,
                 Password: password,
         })
 
-        if err != nil </span><span class="cov0" title="0">{
+        if err != nil </span><span class="cov1" title="1">{
                 return data.JwtToken{}, err
         }</span>
 
@@ -1994,10 +1987,10 @@ func (Minio *MinioClient) MakeBucket(bucketName string) error <span class="cov6"
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov6" title="2">if !exists </span><span class="cov1" title="1">{
+        <span class="cov6" title="2">if !exists </span><span class="cov0" title="0">{
                 return Minio.Client.MakeBucket(ctx, bucketName, minio.MakeBucketOptions{})
         }</span>
-        <span class="cov1" title="1">return nil</span>
+        <span class="cov6" title="2">return nil</span>
 }
 
 func (Minio *MinioClient) Upload(bucketName, objectName string, content []byte) error <span class="cov6" title="2">{

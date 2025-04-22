@@ -64,29 +64,59 @@ func TestUserRepository_FindByUsername(t *testing.T) {
 		DB: gormDb,
 	}
 
-	repo := repositories.UserRepository{IDbHandler: &dbHandler}
+	t.Run("Success", func(t *testing.T) {
 
-	mockUserModel := models.User{
-		Username: "yaman",
-		Password: "jsdfjsldf",
-		Name:     "name",
-	}
-	mockUserModel.ID = 1
+		repo := repositories.UserRepository{IDbHandler: &dbHandler}
 
-	rows := sqlmock.NewRows([]string{
-		"ID",
-		"Username",
-		"Password",
-		"Name"}).AddRow(
-		1,
-		"yaman",
-		"jsdfjsldf",
-		"name")
-	mock.ExpectQuery(`SELECT`).WillReturnRows(rows)
-	users, err := repo.FindByUsername("yaman")
+		mockUserModel := models.User{
+			Username: "yaman",
+			Password: "jsdfjsldf",
+			Name:     "name",
+		}
+		mockUserModel.ID = 1
 
-	assert.NoError(t, err)
-	assert.Equal(t, mockUserModel, users)
+		rows := sqlmock.NewRows([]string{
+			"ID",
+			"Username",
+			"Password",
+			"Name"}).AddRow(
+			1,
+			"yaman",
+			"jsdfjsldf",
+			"name")
+		mock.ExpectQuery(`SELECT`).WillReturnRows(rows)
+		users, err := repo.FindByUsername("yaman")
+
+		assert.NoError(t, err)
+		assert.Equal(t, mockUserModel, users)
+	})
+
+	t.Run("Record Not Found", func(t *testing.T) {
+		repo := repositories.UserRepository{IDbHandler: &dbHandler}
+
+		mockUserModel := models.User{
+			Username: "yaman",
+			Password: "jsdfjsldf",
+			Name:     "name",
+		}
+		mockUserModel.ID = 1
+
+		sqlmock.NewRows([]string{
+			"ID",
+			"Username",
+			"Password",
+			"Name"}).AddRow(
+			1,
+			"yaman",
+			"jsdfjsldf",
+			"name")
+		mock.ExpectQuery(`SELECT`).WillReturnError(gorm.ErrRecordNotFound)
+		users, err := repo.FindByUsername("yaman")
+
+		assert.Error(t, err)
+		assert.Equal(t, models.User{}, users)
+	})
+
 }
 
 func TestCreateUser(t *testing.T) {

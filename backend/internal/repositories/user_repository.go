@@ -5,8 +5,6 @@ import (
 	"yamanmnur/simple-dashboard/internal/dto/data"
 	"yamanmnur/simple-dashboard/internal/models"
 	"yamanmnur/simple-dashboard/pkg/db"
-
-	"gorm.io/gorm"
 )
 
 type IUserRepository interface {
@@ -34,9 +32,7 @@ func (repository *UserRepository) FindByUsername(username string) (models.User, 
 	if result.Error != nil {
 		return models.User{}, result.Error
 	}
-	if result.RowsAffected == 0 {
-		return models.User{}, gorm.ErrRecordNotFound
-	}
+
 	return user, nil
 }
 

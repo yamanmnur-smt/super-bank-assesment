@@ -21,10 +21,7 @@ type IAuthService interface {
 }
 
 func HashPassword(password string) (string, error) {
-	hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	if err != nil {
-		return "", err
-	}
+	hash, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	return string(hash), nil
 }
 
@@ -43,7 +40,7 @@ func (service *AuthService) GenerateToken(userId string) (string, error) {
 	iss := fmt.Sprintf("%v:%v", "jwtservice", "3321")
 	claims := jwt.MapClaims{
 		"sub":   userId,
-		"exp":   time.Now().Add(time.Hour * 1).Unix(),
+		"exp":   time.Now().Add(time.Hour * 3).Unix(),
 		"iss":   iss,
 		"roles": []string{"admin"},
 	}

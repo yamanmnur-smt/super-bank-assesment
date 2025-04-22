@@ -60,3 +60,49 @@ func TestErrorHandler_InternalServerError(t *testing.T) {
 	assert.Equal(t, "something went wrong", response.MetaData.Message)
 	assert.Equal(t, http.StatusText(http.StatusInternalServerError), response.MetaData.Code)
 }
+
+func TestErrorHandler_MissingPayload(t *testing.T) {
+	app := fiber.New(fiber.Config{
+		ErrorHandler: middlewares.ErrorHandler,
+	})
+
+	// Simulate a route that triggers a generic error
+	app.Get("/test", func(ctx *fiber.Ctx) error {
+		return errors.New("missing payload body")
+	})
+
+	req := httptest.NewRequest(http.MethodGet, "/test", nil)
+	resp, _ := app.Test(req)
+
+	assert.Equal(t, http.StatusBadRequest, resp.StatusCode)
+
+	var response pkg_response.BasicResponse
+	err := json.NewDecoder(resp.Body).Decode(&response)
+	assert.NoError(t, err)
+	assert.Equal(t, "error", response.MetaData.Status)
+	assert.Equal(t, "missing payload body", response.MetaData.Message)
+	assert.Equal(t, http.StatusText(http.StatusBadRequest), response.MetaData.Code)
+}
+
+func TestErrorHandler_CredentialWrong(t *testing.T) {
+	app := fiber.New(fiber.Config{
+		ErrorHandler: middlewares.ErrorHandler,
+	})
+
+	// Simulate a route that triggers a generic error
+	app.Get("/test", func(ctx *fiber.Ctx) error {
+		return errors.New("credential wrong")
+	})
+
+	req := httptest.NewRequest(http.MethodGet, "/test", nil)
+	resp, _ := app.Test(req)
+
+	assert.Equal(t, http.StatusBadRequest, resp.StatusCode)
+
+	var response pkg_response.BasicResponse
+	err := json.NewDecoder(resp.Body).Decode(&response)
+	assert.NoError(t, err)
+	assert.Equal(t, "error", response.MetaData.Status)
+	assert.Equal(t, "credential wrong", response.MetaData.Message)
+	assert.Equal(t, http.StatusText(http.StatusBadRequest), response.MetaData.Code)
+}

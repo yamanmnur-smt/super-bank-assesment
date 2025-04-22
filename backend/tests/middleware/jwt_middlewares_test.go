@@ -1,8 +1,11 @@
 package middlewares
 
 import (
+	"crypto/rand"
+	"crypto/rsa"
 	"net/http/httptest"
 	"testing"
+	"time"
 	"yamanmnur/simple-dashboard/internal/middlewares"
 
 	"github.com/gofiber/fiber/v2"
@@ -10,6 +13,23 @@ import (
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )
+
+func generateRS256Token() (string, error) {
+	// Generate RSA key
+	privateKey, err := rsa.GenerateKey(rand.Reader, 2048)
+	if err != nil {
+		return "", err
+	}
+
+	// Create token
+	token := jwt.NewWithClaims(jwt.SigningMethodRS256, jwt.MapClaims{
+		"sub": "fake-user-id",
+		"exp": time.Now().Add(time.Hour * 1).Unix(),
+	})
+
+	// Sign with private key
+	return token.SignedString(privateKey)
+}
 
 func TestJwtMiddleware(t *testing.T) {
 	// Set up the Fiber app
@@ -54,5 +74,18 @@ func TestJwtMiddleware(t *testing.T) {
 		resp, _ := app.Test(req)
 
 		assert.Equal(t, fiber.StatusOK, resp.StatusCode)
+	})
+
+	t.Run("Unauthorized Signing Method", func(t *testing.T) {
+		// Create a token with an invalid signing method
+		token, err := generateRS256Token()
+		assert.NoError(t, err)
+
+		req := httptest.NewRequest("GET", "/protected", nil)
+
+		req.Header.Set("Authorization", "Bearer "+token)
+		resp, _ := app.Test(req)
+
+		assert.Equal(t, fiber.StatusUnauthorized, resp.StatusCode)
 	})
 }
