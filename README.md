@@ -23,14 +23,17 @@ Simple Dashboard using Go & Next Js for Super Bank Assesment
 ## System Design
 
 ![Architecture](/docs/images/architecture_use_docker.png)
+
 By default, this project uses Docker Compose to manage the containers (backend, frontend, MinIO, and PostgreSQL). Each container shares the same network.
 
 ![Basic Communication](/docs/images/communication.png)
+
 In this project, the frontend (Next.js client) will first fetch data from the Next.js API server, which will then fetch data from the backend server.
 
 if there are any routes from backend server that need jwt token, next server will use token from cookies
 
 ![How JWT Token Stored in Frontend](/docs/images/how_token_stored.png)
+
 After the client fetches the `api/login` endpoint from Next.js, the Next.js server will call the login API from the backend to retrieve the JWT token and user data. If the HTTP request for login is successful, the token will be stored in the cookies on the Next.js server.
 
 
