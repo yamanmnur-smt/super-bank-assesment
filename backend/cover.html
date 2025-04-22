@@ -77,17 +77,17 @@
 				
 				<option value="file10">yamanmnur/simple-dashboard/internal/injectors/user_injector.go (100.0%)</option>
 				
-				<option value="file11">yamanmnur/simple-dashboard/internal/middlewares/error_handler.go (87.1%)</option>
+				<option value="file11">yamanmnur/simple-dashboard/internal/middlewares/error_handler.go (100.0%)</option>
 				
-				<option value="file12">yamanmnur/simple-dashboard/internal/middlewares/jwt_middlewares.go (93.3%)</option>
+				<option value="file12">yamanmnur/simple-dashboard/internal/middlewares/jwt_middlewares.go (100.0%)</option>
 				
 				<option value="file13">yamanmnur/simple-dashboard/internal/repositories/customer_repository.go (100.0%)</option>
 				
 				<option value="file14">yamanmnur/simple-dashboard/internal/repositories/dashboard_repository.go (100.0%)</option>
 				
-				<option value="file15">yamanmnur/simple-dashboard/internal/repositories/user_repository.go (92.6%)</option>
+				<option value="file15">yamanmnur/simple-dashboard/internal/repositories/user_repository.go (100.0%)</option>
 				
-				<option value="file16">yamanmnur/simple-dashboard/internal/services/auth_service.go (93.5%)</option>
+				<option value="file16">yamanmnur/simple-dashboard/internal/services/auth_service.go (100.0%)</option>
 				
 				<option value="file17">yamanmnur/simple-dashboard/internal/services/customer_service.go (99.1%)</option>
 				
@@ -167,8 +167,8 @@ import (
 )
 
 type Login struct {
-        Username string
-        Password string
+        Username string `json:"username"`
+        Password string `json:"password"`
 }
 
 func (r Login) Validate() error <span class="cov10" title="6">{
@@ -674,8 +674,8 @@ import (
         "gorm.io/gorm"
 )
 
-func ErrorHandler(ctx *fiber.Ctx, err error) error <span class="cov10" title="19">{
-        if err != nil </span><span class="cov8" title="13">{
+func ErrorHandler(ctx *fiber.Ctx, err error) error <span class="cov10" title="21">{
+        if err != nil </span><span class="cov9" title="15">{
 
                 var statusCode int
                 var message string
@@ -687,27 +687,27 @@ func ErrorHandler(ctx *fiber.Ctx, err error) error <span class="cov10" title="19
                 if errors.Is(err, gorm.ErrRecordNotFound) </span><span class="cov1" title="1">{
                         statusCode = http.StatusNotFound
                         message = "Record not found"
-                }</span> else<span class="cov8" title="12"> if errors.As(err, &amp;invalidReqPayloadError) </span><span class="cov6" title="6">{
+                }</span> else<span class="cov8" title="14"> if errors.As(err, &amp;invalidReqPayloadError) </span><span class="cov6" title="6">{
                         statusCode = http.StatusBadRequest
                         message = err.Error()
-                }</span> else<span class="cov6" title="6"> if err.Error() == missionUserId.Error() </span><span class="cov1" title="1">{
+                }</span> else<span class="cov7" title="8"> if err.Error() == missionUserId.Error() </span><span class="cov1" title="1">{
                         statusCode = http.StatusUnauthorized
                         message = err.Error()
-                }</span> else<span class="cov5" title="5"> if err.Error() == invalidUserId.Error() </span><span class="cov1" title="1">{
+                }</span> else<span class="cov6" title="7"> if err.Error() == invalidUserId.Error() </span><span class="cov1" title="1">{
                         statusCode = http.StatusBadRequest
                         message = err.Error()
-                }</span> else<span class="cov5" title="4"> if err.Error() == missingPayload.Error() </span><span class="cov0" title="0">{
+                }</span> else<span class="cov6" title="6"> if err.Error() == missingPayload.Error() </span><span class="cov1" title="1">{
                         statusCode = http.StatusBadRequest
                         message = err.Error()
-                }</span> else<span class="cov5" title="4"> if err.Error() == credentialWrong.Error() </span><span class="cov0" title="0">{
+                }</span> else<span class="cov5" title="5"> if err.Error() == credentialWrong.Error() </span><span class="cov1" title="1">{
                         statusCode = http.StatusBadRequest
-                        message = "Credential Wrong"
+                        message = "credential wrong"
                 }</span> else<span class="cov5" title="4"> {
                         statusCode = http.StatusInternalServerError
                         message = err.Error()
                 }</span>
 
-                <span class="cov8" title="13">response := pkg_response.BasicResponse{
+                <span class="cov9" title="15">response := pkg_response.BasicResponse{
                         MetaData: pkg_response.MetaData{
                                 Status:  "error",
                                 Message: message,
@@ -730,7 +730,7 @@ import (
         "github.com/spf13/viper"
 )
 
-func JwtMiddleware(c *fiber.Ctx) error <span class="cov10" title="3">{
+func JwtMiddleware(c *fiber.Ctx) error <span class="cov10" title="4">{
         secretKey := viper.Get("APP_SECRET_KEY").(string)
         secretKeyByte := []byte(secretKey)
         authHeader := c.Get("Authorization")
@@ -741,16 +741,16 @@ func JwtMiddleware(c *fiber.Ctx) error <span class="cov10" title="3">{
                 })
         }</span>
 
-        <span class="cov6" title="2">tokenStr := authHeader[len("Bearer "):]
+        <span class="cov8" title="3">tokenStr := authHeader[len("Bearer "):]
 
-        token, err := jwt.Parse(tokenStr, func(t *jwt.Token) (interface{}, error) </span><span class="cov1" title="1">{
-                if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok </span><span class="cov0" title="0">{
+        token, err := jwt.Parse(tokenStr, func(t *jwt.Token) (interface{}, error) </span><span class="cov5" title="2">{
+                if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok </span><span class="cov1" title="1">{
                         return nil, fiber.ErrUnauthorized
                 }</span>
                 <span class="cov1" title="1">return secretKeyByte, nil</span>
         })
 
-        <span class="cov6" title="2">if err != nil || !token.Valid </span><span class="cov1" title="1">{
+        <span class="cov8" title="3">if err != nil || !token.Valid </span><span class="cov5" title="2">{
                 return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
                         "error": "Invalid token",
                 })
@@ -793,6 +793,7 @@ func (repository *CustomerRepository) Detail(id uint, detail_data *models.Custom
                 Where("customers.id = ?", id).
                 Preload("BankAccounts").
                 Preload("BankAccounts.TermDeposit").
+                Preload("BankAccounts.TermDeposit.TermDepositsType").
                 Preload("Pockets").
                 First(&amp;detail_data).Error
         if err != nil </span><span class="cov5" title="2">{
@@ -1041,8 +1042,6 @@ import (
         "yamanmnur/simple-dashboard/internal/dto/data"
         "yamanmnur/simple-dashboard/internal/models"
         "yamanmnur/simple-dashboard/pkg/db"
-
-        "gorm.io/gorm"
 )
 
 type IUserRepository interface {
@@ -1063,16 +1062,14 @@ func (repository *UserRepository) FindById(id uint) (models.User, error) <span c
         return user, nil
 }</span>
 
-func (repository *UserRepository) FindByUsername(username string) (models.User, error) <span class="cov1" title="1">{
+func (repository *UserRepository) FindByUsername(username string) (models.User, error) <span class="cov6" title="2">{
         var user models.User
 
         result := repository.DB.Raw("SELECT * FROM users WHERE username = ?", username).Scan(&amp;user)
-        if result.Error != nil </span><span class="cov0" title="0">{
+        if result.Error != nil </span><span class="cov1" title="1">{
                 return models.User{}, result.Error
         }</span>
-        <span class="cov1" title="1">if result.RowsAffected == 0 </span><span class="cov0" title="0">{
-                return models.User{}, gorm.ErrRecordNotFound
-        }</span>
+
         <span class="cov1" title="1">return user, nil</span>
 }
 
@@ -1131,13 +1128,10 @@ type IAuthService interface {
         GenerateToken(userId string) (string, error)
 }
 
-func HashPassword(password string) (string, error) <span class="cov1" title="1">{
-        hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-        if err != nil </span><span class="cov0" title="0">{
-                return "", err
-        }</span>
-        <span class="cov1" title="1">return string(hash), nil</span>
-}
+func HashPassword(password string) (string, error) <span class="cov6" title="2">{
+        hash, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+        return string(hash), nil
+}</span>
 
 func checkPassword(hashedPassword, inputPassword string) bool <span class="cov6" title="2">{
         err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(inputPassword))
@@ -1159,7 +1153,6 @@ func (service *AuthService) GenerateToken(userId string) (string, error) <span c
                 "roles": []string{"admin"},
         }
         token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-        // Add "kid" to the header
         token.Header["kid"] = "sim2"
         signedToken, _ := token.SignedString(secretKeyByte)
 
@@ -1167,7 +1160,7 @@ func (service *AuthService) GenerateToken(userId string) (string, error) <span c
 
 }</span>
 
-func (service *AuthService) Register(request *requests.Register) (data.JwtToken, error) <span class="cov1" title="1">{
+func (service *AuthService) Register(request *requests.Register) (data.JwtToken, error) <span class="cov6" title="2">{
 
         password, _ := HashPassword(request.Password)
 
@@ -1177,7 +1170,7 @@ func (service *AuthService) Register(request *requests.Register) (data.JwtToken,
                 Password: password,
         })
 
-        if err != nil </span><span class="cov0" title="0">{
+        if err != nil </span><span class="cov1" title="1">{
                 return data.JwtToken{}, err
         }</span>
 
@@ -1307,9 +1300,14 @@ func (service *CustomerService) Detail(id uint) (data.CustomerDetailData, error)
 
         <span class="cov4" title="2">bank := customer.BankAccounts[0]
         totalBalance += bank.Balance
-
         result.TotalBalance = fmt.Sprintf("%.2f", totalBalance)
         result.TotalPockets = fmt.Sprintf("%.2f", totalPockets)
+
+        formatTotalPockets, _ := util.FormatIDRCurrency(result.TotalPockets)
+        result.TotalPockets = formatTotalPockets
+
+        formatTotalBalance, _ := util.FormatIDRCurrency(result.TotalBalance)
+        result.TotalBalance = formatTotalBalance
 
         result.Banks = data.BankAccountData{
                 Id:             bank.ID,
@@ -1343,6 +1341,8 @@ func (service *CustomerService) Detail(id uint) (data.CustomerDetailData, error)
         }</span>
 
         <span class="cov4" title="2">result.TotalDeposits = fmt.Sprintf("%.2f", totalDeposits)
+        formatTotalDeposits, _ := util.FormatIDRCurrency(result.TotalDeposits)
+        result.TotalDeposits = formatTotalDeposits
 
         return result, nil</span>
 }
@@ -1688,7 +1688,6 @@ func main() <span class="cov0" title="0">{
 
         client := util.InitMinio()
 
-        // init singleton DBHandler
         db.InitInstanceDbHandler(&amp;db.IDbHandler{
                 DB: dbHandler,
         })
@@ -1699,13 +1698,11 @@ func main() <span class="cov0" title="0">{
                 return middlewares.ErrorHandler(ctx, ctx.Next())
         }</span>)
 
-        // Init Singleton for Service and Repository
         <span class="cov0" title="0">injectors.InitDI(app, db.GetDbHandler(), client)
 
-        // Init Seeder
         seeder.InitSeed()
 
-        app.Listen(fmt.Sprintf("127.0.0.1:%s", APP_PORT))</span>
+        app.Listen(fmt.Sprintf(":%s", APP_PORT))</span>
 }
 </pre>
 		
@@ -1917,35 +1914,31 @@ import (
         "strings"
 )
 
-func FormatIDRCurrency(balance string) (string, error) <span class="cov6" title="16">{
-        // Parse the string to float
+func FormatIDRCurrency(balance string) (string, error) <span class="cov7" title="28">{
         amount, err := strconv.ParseFloat(balance, 64)
         if err != nil </span><span class="cov1" title="1">{
                 return "", err
         }</span>
 
-        // Convert to integer (removing decimals)
-        <span class="cov6" title="15">intAmount := int64(amount)
+        <span class="cov6" title="27">intAmount := int64(amount)
 
-        // Format with dot separator (using strings.Builder for performance)
         result := formatWithDotSeparator(intAmount)
 
         return "Rp" + result, nil</span>
 }
 
-func formatWithDotSeparator(n int64) string <span class="cov6" title="15">{
+func formatWithDotSeparator(n int64) string <span class="cov6" title="27">{
         s := strconv.FormatInt(n, 10)
         var result strings.Builder
 
-        // handle the reverse grouping from the right
         length := len(s)
-        for i, digit := range s </span><span class="cov10" title="95">{
-                if i != 0 &amp;&amp; (length-i)%3 == 0 </span><span class="cov7" title="21">{
+        for i, digit := range s </span><span class="cov10" title="143">{
+                if i != 0 &amp;&amp; (length-i)%3 == 0 </span><span class="cov7" title="29">{
                         result.WriteRune('.')
                 }</span>
-                <span class="cov10" title="95">result.WriteRune(digit)</span>
+                <span class="cov10" title="143">result.WriteRune(digit)</span>
         }
-        <span class="cov6" title="15">return result.String()</span>
+        <span class="cov6" title="27">return result.String()</span>
 }
 </pre>
 		
@@ -1958,6 +1951,7 @@ import (
 
         "github.com/minio/minio-go/v7"
         "github.com/minio/minio-go/v7/pkg/credentials"
+        "github.com/spf13/viper"
 )
 
 type IMinioClient interface {
@@ -1971,9 +1965,10 @@ type MinioClient struct {
 }
 
 func InitMinio() *minio.Client <span class="cov10" title="3">{
-        endpoint := "localhost:9000"
-        accessKey := "admin"
-        secretKey := "password123"
+        endpoint := viper.Get("APP_MINIO_HOST").(string)
+        accessKey := viper.Get("APP_MINIO_USERNAME").(string)
+        secretKey := viper.Get("APP_MINIO_PASSWORD").(string)
+
         useSSL := false
 
         minioClient, err := minio.New(endpoint, &amp;minio.Options{
@@ -2473,7 +2468,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-01-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    1,
                 },
                 {
                         CustomerID:            2,
@@ -2484,7 +2479,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-02-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    2,
                 },
                 {
                         CustomerID:            3,
@@ -2495,7 +2490,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-03-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    3,
                 },
                 {
                         CustomerID:            4,
@@ -2506,7 +2501,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-04-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    4,
                 },
                 {
                         CustomerID:            5,
@@ -2517,7 +2512,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-05-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    5,
                 },
                 {
                         CustomerID:            6,
@@ -2528,7 +2523,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-06-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    6,
                 },
                 {
                         CustomerID:            7,
@@ -2539,7 +2534,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-07-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    7,
                 },
                 {
                         CustomerID:            8,
@@ -2550,7 +2545,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-08-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    8,
                 },
                 {
                         CustomerID:            9,
@@ -2561,7 +2556,7 @@ func TermDepositSeeder() <span class="cov0" title="0">{
                         MaturityDate:          "2024-09-01",
                         Status:                models.ACTIVE,
                         ExtensionInstructions: models.PRINCIPAL_AND_INTEREST_ROLLOVER,
-                        TermDepositsType:      defaultTermDepositTypes,
+                        TermDepositsTypeID:    9,
                 },
                 {
                         CustomerID:            10,
@@ -2692,7 +2687,6 @@ import (
         "github.com/stretchr/testify/mock"
 )
 
-// MockUserRepository is a mock implementation of IUserRepository
 type MockUserRepository struct {
         mock.Mock
 }

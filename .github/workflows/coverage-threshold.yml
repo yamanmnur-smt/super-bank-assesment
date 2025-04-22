@@ -1,0 +1,37 @@
+name: Coverage Check
+
+on:
+  push:
+    branches: [test/threshold]
+  pull_request:
+    branches: [test/threshold]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.21
+
+      # - name: Run tests with coverage
+      #   run: |
+      #     cd backend
+      #     go test ./... -coverprofile ./cover.out -covermode atomic -coverpkg ./...
+      #     go tool cover -html cover.out -o cover.html
+
+      - name: Check coverage threshold
+        run: |
+          cd backend
+          COVERAGE=$(go tool cover -func=cover.out | grep total: | awk '{print substr($3, 1, length($3)-1)}')
+          echo "Total coverage: $COVERAGE%"
+          COVERAGE_INT=${COVERAGE%.*}
+          if [ "$COVERAGE_INT" -lt 80 ]; then
+            echo "Coverage is below 80%!"
+            exit 1
+          fi

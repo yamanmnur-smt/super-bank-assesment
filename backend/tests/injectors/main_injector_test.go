@@ -15,6 +15,7 @@ import (
 )
 
 func TestInitDI(t *testing.T) {
+	// t.Skip("Temporary Skip")
 	app := fiber.New()
 	viper.SetConfigFile("../../.env")
 	viper.ReadInConfig()

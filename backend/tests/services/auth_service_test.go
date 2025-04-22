@@ -1,6 +1,7 @@
 package services_test
 
 import (
+	"errors"
 	"testing"
 	"yamanmnur/simple-dashboard/internal/dto/data"
 	"yamanmnur/simple-dashboard/internal/dto/requests"
@@ -38,32 +39,54 @@ func (m *MockUserService) Update(userData data.UserData) (data.UserData, error) 
 }
 
 func TestAuthService_Register(t *testing.T) {
-	mockUserService := new(MockUserService)
-	authService := &services.AuthService{UserService: mockUserService}
-	viper.Set("APP_SECRET_KEY", "testsecretkey") // Ensure APP_SECRET_KEY is set for the test
+	t.Run("success", func(t *testing.T) {
+		mockUserService := new(MockUserService)
+		authService := &services.AuthService{UserService: mockUserService}
+		viper.Set("APP_SECRET_KEY", "testsecretkey") // Ensure APP_SECRET_KEY is set for the test
 
-	mockUser := data.UserData{
-		Id:       1,
-		Name:     "John Doe",
-		Username: "johndoe",
-		Password: "hashedpassword",
-	}
+		mockUser := data.UserData{
+			Id:       1,
+			Name:     "John Doe",
+			Username: "johndoe",
+			Password: "hashedpassword",
+		}
 
-	mockUserService.On("Create", mock.Anything).Return(mockUser, nil)
+		mockUserService.On("Create", mock.Anything).Return(mockUser, nil)
 
-	request := &requests.Register{
-		Name:     "John Doe",
-		Username: "johndoe",
-		Password: "password123",
-	}
+		request := &requests.Register{
+			Name:     "John Doe",
+			Username: "johndoe",
+			Password: "password123",
+		}
 
-	token, err := authService.Register(request)
+		token, err := authService.Register(request)
 
-	assert.NoError(t, err)
-	assert.NotEmpty(t, token.Token)
-	assert.Equal(t, mockUser.Id, token.User.Id)
-	assert.Equal(t, mockUser.Name, token.User.Name)
-	assert.Equal(t, mockUser.Username, token.User.Username)
+		assert.NoError(t, err)
+		assert.NotEmpty(t, token.Token)
+		assert.Equal(t, mockUser.Id, token.User.Id)
+		assert.Equal(t, mockUser.Name, token.User.Name)
+		assert.Equal(t, mockUser.Username, token.User.Username)
+	})
+
+	t.Run("user service error", func(t *testing.T) {
+		mockUserService := new(MockUserService)
+		authService := &services.AuthService{UserService: mockUserService}
+		viper.Set("APP_SECRET_KEY", "testsecretkey")
+
+		mockUserService.On("Create", mock.Anything).Return(data.UserData{}, errors.New("service error"))
+
+		request := &requests.Register{
+			Name:     "John Doe",
+			Username: "johndoe",
+			Password: "password123",
+		}
+
+		token, err := authService.Register(request)
+
+		assert.Error(t, err)
+		assert.Empty(t, token.Token)
+	})
+
 }
 
 func TestAuthService_Login(t *testing.T) {

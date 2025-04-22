@@ -1,6 +1,5 @@
 import { BaseResponse, PageResponse } from "@/context/interfaces/base_response";
 import { CustomerData, CustomerDetailData, PageRequest } from "./_dto/customers_dto";
-import { fetchWithInterceptor } from "@/lib/fetch_interceptor";
 
 const base_url = process.env.NEXT_PUBLIC_CLIENT_URL || "http://localhost:3000";
 const routes = {

@@ -37,7 +37,7 @@ func ErrorHandler(ctx *fiber.Ctx, err error) error {
 			message = err.Error()
 		} else if err.Error() == credentialWrong.Error() {
 			statusCode = http.StatusBadRequest
-			message = "Credential Wrong"
+			message = "credential wrong"
 		} else {
 			statusCode = http.StatusInternalServerError
 			message = err.Error()

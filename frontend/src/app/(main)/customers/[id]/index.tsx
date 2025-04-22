@@ -100,7 +100,7 @@ const CustomerDetailComponent = () => {
             <div className="overflow-y-auto flex-col h-full space-y-2">
               {customer?.pockets.map((item, index) => (
 
-                <div className="bg-[#dad7cd]  shadow-md backdrop-blur-sm px-3 py-3 h-20 rounded-xl">
+                <div key={index} className="bg-[#dad7cd]  shadow-md backdrop-blur-sm px-3 py-3 h-20 rounded-xl">
                   <div className="flex flex-row space-x-2">
 
                     <div className="px-3 py-3 bg-[#b5c1a1] backdrop-blur-2xl w-15 rounded-xl">
@@ -170,9 +170,7 @@ const CustomerDetailComponent = () => {
 								layout="fill"
 								objectFit="cover"
 							/>
-                {/* <button className="relative w-20 h-20 flex items-center justify-center bg-[#588157] text-white font-bold rounded-full">
-                  <span>JS</span>
-                </button> */}
+            
                 <button className="absolute top-0 right-0 bg-white rounded-full p-1 shadow">
                   {/* <XIcon size={12} /> */}
                 </button>
@@ -254,39 +252,6 @@ const CustomerDetailComponent = () => {
           </table>
         </div>
       </div>
-
-      {/* Profile Detail  */}
-      {/* Data Pribadi
-			1. Status Married
-			2. Account Purpose
-			3. Source of Income
-			4. Income Per Month
-			5. Jobs
-			6. Position
-			7. Industrion
-			8. Company Name
-			9. Address Company
-			10. Address Customer
-			11. Phone Number
-			12. Email */}
-
-      {/* Bank Account Detail
-			1. Saldo
-			2. Bunga
-			3. Mutasi */}
-
-      {/* Saku / Pockets */}
-      {/* 1. Saldo
-			2. Mutasi
-			3. Bunga
-			4. Nomor Rekening */}
-
-      {/* List Deposits
-			1. Tenor
-			2. Status
-			3. Saldo
-			4. Saldo + Bunga
-			5. Instruksi Perpanjangan */}
     </div>
   );
 };

@@ -1,0 +1,1081 @@
+{
+	"info": {
+		"_postman_id": "f9196e0f-bb81-472d-a434-fd4b7db06b27",
+		"name": "Simple Dashboard Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28146889"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set('bearer_token', jsonData.data.token)\r",
+									"    console.log(jsonData.data.token)\r",
+									"    console.log(pm.collectionVariables.get(\"bearer_token\"))\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"yaman\",\r\n    \"password\" : \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/v1/auth/login",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						},
+						"description": "### Login API\n\nThis API endpoint allows users to authenticate and obtain a token for accessing protected resources.\n\n#### Request Body\n\n- **Type**: JSON\n    \n- **Attributes**:\n    \n    - `username`: (string) The username of the user.\n        \n    - `password`: (string) The password of the user.\n        \n\n#### Response\n\nThe response of this request is a JSON object with the following schema:\n\n``` json\n{\n  \"meta_data\": {\n    \"status\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"string\"\n  },\n  \"data\": {\n    \"user\": {\n      \"id\": \"number\",\n      \"username\": \"string\",\n      \"name\": \"string\"\n    },\n    \"token\": \"string\"\n  }\n}\n\n ```\n\n- `meta_data`: Contains status, message, and code.\n    \n- `data`: Contains user information and a token.\n    \n\n#### Example Response\n\n``` json\n{\n  \"meta_data\": {\n    \"status\": \"string\",\n    \"message\": \"string\",\n    \"code\": \"string\"\n  },\n  \"data\": {\n    \"Token\": \"string\"\n  }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "Login (Success)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"urayjordi\",\r\n    \"password\" : \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8085/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 08 Apr 2025 16:40:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "297"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"success\",\n        \"message\": \"Success To Login User\",\n        \"code\": \"200\"\n    },\n    \"data\": {\n        \"Token\": \"eyJhbGciOiJIUzI1NiIsImtpZCI6InNpbTIiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NDQxMzQwNDksImlzcyI6Imp3dHNlcnZpY2U6MzMyMSIsInJvbGVzIjpbImFkbWluIl0sInN1YiI6IjEifQ.jGxrPTf8XlIvEOloLAA9NOBM80cNzbKF6Pum6CytAGg\"\n    }\n}"
+						},
+						{
+							"name": "Login (Failed)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"yamanss\",\r\n    \"password\" : \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/v1/auth/login",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 20 Apr 2025 19:17:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"error\",\n        \"message\": \"Credential Wrong\",\n        \"code\": \"Bad Request\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/v1/auth/profile",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/v1/auth/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 20 Apr 2025 19:12:17 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "137"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"success\",\n        \"message\": \"Success To Get Profile User\",\n        \"code\": \"200\"\n    },\n    \"data\": {\n        \"id\": 1,\n        \"username\": \"yaman\",\n        \"name\": \"Yaman\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "List Customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/v1/customer/list?page_number=0&page_size=10&search=&sort_by=&sort_direction=desc",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page_number",
+									"value": "0"
+								},
+								{
+									"key": "page_size",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": ""
+								},
+								{
+									"key": "sort_by",
+									"value": ""
+								},
+								{
+									"key": "sort_direction",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Customer",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/v1/customer/list?page_number=0&page_size=10&search=&sort_by=&sort_direction=desc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"v1",
+										"customer",
+										"list"
+									],
+									"query": [
+										{
+											"key": "page_number",
+											"value": "0"
+										},
+										{
+											"key": "page_size",
+											"value": "10"
+										},
+										{
+											"key": "search",
+											"value": ""
+										},
+										{
+											"key": "sort_by",
+											"value": ""
+										},
+										{
+											"key": "sort_direction",
+											"value": "desc"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 17 Apr 2025 08:39:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2061"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"success\",\n        \"message\": \"Success To Retrieve Data\",\n        \"code\": \"200\"\n    },\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Yaman\",\n            \"email\": \"yaman@mail.com\",\n            \"phone_number\": \"1234567890\",\n            \"photo\": \"\",\n            \"address\": \"123 Street, City, Country\",\n            \"account_number\": \"1234567890\",\n            \"created_at\": \"16 Apr 2025 04:55:01\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Alice\",\n            \"email\": \"alice@mail.com\",\n            \"phone_number\": \"1234567891\",\n            \"photo\": \"\",\n            \"address\": \"124 Street, City, Country\",\n            \"account_number\": \"2345678901\",\n            \"created_at\": \"16 Apr 2025 04:55:01\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Bob\",\n            \"email\": \"bob@mail.com\",\n            \"phone_number\": \"1234567892\",\n            \"photo\": \"\",\n            \"address\": \"125 Street, City, Country\",\n            \"account_number\": \"3456789012\",\n            \"created_at\": \"16 Apr 2025 04:55:01\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Charlie\",\n            \"email\": \"charlie@mail.com\",\n            \"phone_number\": \"1234567893\",\n            \"photo\": \"\",\n            \"address\": \"126 Street, City, Country\",\n            \"account_number\": \"4567890123\",\n            \"created_at\": \"16 Apr 2025 04:55:01\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"David\",\n            \"email\": \"david@mail.com\",\n            \"phone_number\": \"1234567894\",\n            \"photo\": \"\",\n            \"address\": \"127 Street, City, Country\",\n            \"account_number\": \"5678901234\",\n            \"created_at\": \"16 Apr 2025 04:55:01\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Eve\",\n            \"email\": \"eve@mail.com\",\n            \"phone_number\": \"1234567895\",\n            \"photo\": \"\",\n            \"address\": \"128 Street, City, Country\",\n            \"account_number\": \"6789012345\",\n            \"created_at\": \"16 Apr 2025 04:55:01\"\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Frank\",\n            \"email\": \"frank@mail.com\",\n            \"phone_number\": \"1234567896\",\n            \"photo\": \"\",\n            \"address\": \"129 Street, City, Country\",\n            \"account_number\": \"7890123456\",\n            \"created_at\": \"16 Apr 2025 04:55:01\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"Grace\",\n            \"email\": \"grace@mail.com\",\n            \"phone_number\": \"1234567897\",\n            \"photo\": \"\",\n            \"address\": \"130 Street, City, Country\",\n            \"account_number\": \"8901234567\",\n            \"created_at\": \"16 Apr 2025 04:55:01\"\n        },\n        {\n            \"id\": 9,\n            \"name\": \"Hank\",\n            \"email\": \"hank@mail.com\",\n            \"phone_number\": \"1234567898\",\n            \"photo\": \"\",\n            \"address\": \"131 Street, City, Country\",\n            \"account_number\": \"9012345678\",\n            \"created_at\": \"16 Apr 2025 04:55:01\"\n        },\n        {\n            \"id\": 10,\n            \"name\": \"Ivy\",\n            \"email\": \"ivy@mail.com\",\n            \"phone_number\": \"1234567899\",\n            \"photo\": \"\",\n            \"address\": \"132 Street, City, Country\",\n            \"account_number\": \"0123456789\",\n            \"created_at\": \"16 Apr 2025 04:55:01\"\n        }\n    ],\n    \"page_data\": {\n        \"limit\": 10,\n        \"total_rows\": 10,\n        \"total_pages\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Detail Customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/v1/customer/detail/:id",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"detail",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Detail Customer (Success)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/v1/customer/detail/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"v1",
+										"customer",
+										"detail",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 21 Apr 2025 02:17:02 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1143"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"success\",\n        \"message\": \"Success To Get Data\",\n        \"code\": \"200\"\n    },\n    \"data\": {\n        \"id\": 1,\n        \"photo\": \"\",\n        \"username\": \"yaman\",\n        \"name\": \"Yaman\",\n        \"email\": \"yaman@mail.com\",\n        \"phone\": \"1234567890\",\n        \"address\": \"123 Street, City, Country\",\n        \"gender\": \"male\",\n        \"account_purpose\": \"savings\",\n        \"source_of_income\": \"salary\",\n        \"income_per_month\": \"5000\",\n        \"jobs\": \"developer\",\n        \"position\": \"senior developer\",\n        \"industries\": \"IT\",\n        \"company_name\": \"Tech Corp\",\n        \"address_company\": \"456 Tech Street, City, Country\",\n        \"total_balance\": \"2001.00\",\n        \"total_deposits\": \"10000.00\",\n        \"total_pockets\": \"1000.50\",\n        \"created_at\": \"16 April 2025\",\n        \"banks\": {\n            \"id\": 1,\n            \"account_number\": \"1234567890\",\n            \"balance\": 1000.5,\n            \"account_type\": \"savings\",\n            \"card_number\": \"9876-5432-1098-7654\",\n            \"expiration_date\": \"2026-01-15T00:00:00Z\",\n            \"cvc\": \"456\",\n            \"status\": \"\",\n            \"deposits\": [\n                {\n                    \"amount\": 10000,\n                    \"interest_rate\": 3.5,\n                    \"start_date\": \"2023-01-01T00:00:00Z\",\n                    \"maturity_date\": \"2024-01-01T00:00:00Z\",\n                    \"status\": \"\",\n                    \"extension_instructions\": \"Principal and interest rollover\",\n                    \"term_deposits_types\": {\n                        \"name\": \"\",\n                        \"interest_rate\": 0,\n                        \"min_amount\": 0,\n                        \"max_amount\": 0,\n                        \"term_days\": 0,\n                        \"effective_date\": \"\"\n                    }\n                }\n            ]\n        },\n        \"pockets\": [\n            {\n                \"name\": \"Savings\",\n                \"balance\": 1000.5,\n                \"currency\": \"USD\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Detail Customer (Failed)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearer_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{server_url}}/api/v1/customer/detail/:id",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customer",
+										"detail",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 21 Apr 2025 06:58:08 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"error\",\n        \"message\": \"Record not found\",\n        \"code\": \"Not Found\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Upload Photo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fileUpload",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server_url}}/api/v1/customer/upload-photo",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"upload-photo"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Upload Photo (Success)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "fileUpload",
+											"type": "file",
+											"src": "/C:/Users/Yaman/Pictures/Screenshots/Screenshot 2025-03-30 160259.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/v1/customer/upload-photo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"v1",
+										"customer",
+										"upload-photo"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 21 Apr 2025 06:59:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "192"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"success\",\n        \"message\": \"Success To Update Photo Customer\",\n        \"code\": \"200\"\n    },\n    \"data\": \"http://localhost:3001/api/v1/file/customer/photo?filename=Screenshot 2025-03-30 160259.png\"\n}"
+						},
+						{
+							"name": "Upload Photo (Failed)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearer_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "fileUpload",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{server_url}}/api/v1/customer/upload-photo",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customer",
+										"upload-photo"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 21 Apr 2025 07:00:03 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "131"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"error\",\n        \"message\": \"there is no uploaded file associated with the given key\",\n        \"code\": \"Internal Server Error\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Photo",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/v1/customer/get-photo?filename=Screenshot 2025-04-17 102813.png",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"get-photo"
+							],
+							"query": [
+								{
+									"key": "filename",
+									"value": "Screenshot 2025-04-17 102813.png"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"photo\" : \"\",\r\n    \"name\" : \"Asep\",\r\n    \"email\" : \"asep@mail.co,\",\r\n    \"phone\" : \"08823423\",\r\n    \"address\" : \"Bandung\",\r\n    \"gender\" : \"male\",\r\n    \"account_purpose\" : \"\",\r\n    \"source_of_income\" : \"\",\r\n    \"income_per_month\" : \"\",\r\n    \"jobs\" : \"\",\r\n    \"position\" : \"\",\r\n    \"industries\" : \"\",\r\n    \"company_name\" : \"\",\r\n    \"address_company\" : \"\",\r\n    \"username\" : \"asep\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/v1/customer/create",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create (Success)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"photo\" : \"\",\r\n    \"name\" : \"Asep\",\r\n    \"email\" : \"asep@mail.co,\",\r\n    \"phone\" : \"08823423\",\r\n    \"address\" : \"Bandung\",\r\n    \"gender\" : \"male\",\r\n    \"account_purpose\" : \"\",\r\n    \"source_of_income\" : \"\",\r\n    \"income_per_month\" : \"\",\r\n    \"jobs\" : \"\",\r\n    \"position\" : \"\",\r\n    \"industries\" : \"\",\r\n    \"company_name\" : \"\",\r\n    \"address_company\" : \"\",\r\n    \"username\" : \"asep\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/v1/customer/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"v1",
+										"customer",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 21 Apr 2025 04:11:09 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "689"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"success\",\n        \"message\": \"Success To Get Profile User\",\n        \"code\": \"200\"\n    },\n    \"data\": {\n        \"id\": 11,\n        \"photo\": \"\",\n        \"username\": \"asep\",\n        \"name\": \"Asep\",\n        \"email\": \"asep@mail.co,\",\n        \"phone\": \"08823423\",\n        \"address\": \"Bandung\",\n        \"gender\": \"male\",\n        \"account_purpose\": \"\",\n        \"source_of_income\": \"\",\n        \"income_per_month\": \"\",\n        \"jobs\": \"\",\n        \"position\": \"\",\n        \"industries\": \"\",\n        \"company_name\": \"\",\n        \"address_company\": \"\",\n        \"total_balance\": \"0.00\",\n        \"total_deposits\": \"0.00\",\n        \"total_pockets\": \"0.00\",\n        \"created_at\": \"21 April 2025\",\n        \"banks\": {\n            \"id\": 11,\n            \"account_number\": \"07070092818\",\n            \"balance\": 0,\n            \"account_type\": \"Savings\",\n            \"card_number\": \"6298-3731-3958-6895\",\n            \"expiration_date\": \"2028-04-01T00:00:00Z\",\n            \"cvc\": \"676\",\n            \"status\": \"ACTIVE\",\n            \"deposits\": []\n        },\n        \"pockets\": []\n    }\n}"
+						},
+						{
+							"name": "Create (Failed)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearer_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"photo\" : \"\",\r\n    \"email\" : \"asep@mail.co,\",\r\n    \"phone\" : \"08823423\",\r\n    \"address\" : \"Bandung\",\r\n    \"gender\" : \"male\",\r\n    \"account_purpose\" : \"\",\r\n    \"source_of_income\" : \"\",\r\n    \"income_per_month\" : \"\",\r\n    \"jobs\" : \"\",\r\n    \"position\" : \"\",\r\n    \"industries\" : \"\",\r\n    \"company_name\" : \"\",\r\n    \"address_company\" : \"\",\r\n    \"username\" : \"asep\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/v1/customer/create",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customer",
+										"create"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 21 Apr 2025 06:57:25 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"error\",\n        \"message\": \"name: cannot be blank.\",\n        \"code\": \"Bad Request\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Upload Photo Customer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"value": "image.png",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server_url}}/api/v1/customer/update-photo",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"update-photo"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Photo Customer (Missing Payload)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/v1/customer/update-photo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"v1",
+										"customer",
+										"update-photo"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 21 Apr 2025 06:48:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "86"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"error\",\n        \"message\": \"missing payload body\",\n        \"code\": \"Bad Request\"\n    }\n}"
+						},
+						{
+							"name": "Update Photo Customer (Success)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{bearer_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "photo",
+											"value": "image.png",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/v1/customer/update-photo",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customer",
+										"update-photo"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 21 Apr 2025 06:56:25 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "270"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"success\",\n        \"message\": \"Success To Update Photo Customer\",\n        \"code\": \"200\"\n    },\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Yaman\",\n        \"email\": \"yaman@mail.com\",\n        \"phone_number\": \"1234567890\",\n        \"photo\": \"image.png\",\n        \"address\": \"123 Street, City, Country\",\n        \"account_number\": \"\",\n        \"created_at\": \"\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Get Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server_url}}/api/v1/dashboard",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"dashboard"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Dashboard (Success)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/api/v1/dashboard",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"v1",
+										"dashboard"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 21 Apr 2025 02:15:34 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "793"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"success\",\n        \"message\": \"Success To Get Data\",\n        \"code\": \"200\"\n    },\n    \"data\": {\n        \"total_card\": {\n            \"total_customers\": \"10\",\n            \"total_deposits\": \"Rp325.000\",\n            \"total_balance\": \"Rp21.502\"\n        },\n        \"pie_data\": [\n            {\n                \"label\": \"1 Month\",\n                \"value\": \"Rp0\"\n            },\n            {\n                \"label\": \"6 Months\",\n                \"value\": \"Rp0\"\n            },\n            {\n                \"label\": \"12 Months\",\n                \"value\": \"Rp0\"\n            },\n            {\n                \"label\": \"3 Months\",\n                \"value\": \"Rp0\"\n            },\n            {\n                \"label\": \"9 Months\",\n                \"value\": \"Rp0\"\n            },\n            {\n                \"label\": \"14 Days\",\n                \"value\": \"Rp0\"\n            },\n            {\n                \"label\": \"7 Days\",\n                \"value\": \"Rp325.000\"\n            }\n        ],\n        \"bar_data\": [\n            {\n                \"label\": \"Jan\",\n                \"value\": \"0\"\n            },\n            {\n                \"label\": \"Feb\",\n                \"value\": \"0\"\n            },\n            {\n                \"label\": \"Mar\",\n                \"value\": \"0\"\n            },\n            {\n                \"label\": \"Apr\",\n                \"value\": \"10\"\n            },\n            {\n                \"label\": \"May\",\n                \"value\": \"0\"\n            },\n            {\n                \"label\": \"Jun\",\n                \"value\": \"0\"\n            },\n            {\n                \"label\": \"Jul\",\n                \"value\": \"0\"\n            },\n            {\n                \"label\": \"Aug\",\n                \"value\": \"0\"\n            },\n            {\n                \"label\": \"Sep\",\n                \"value\": \"0\"\n            },\n            {\n                \"label\": \"Oct\",\n                \"value\": \"0\"\n            },\n            {\n                \"label\": \"Nov\",\n                \"value\": \"0\"\n            },\n            {\n                \"label\": \"Dec\",\n                \"value\": \"0\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server_url",
+			"value": "http://localhost:3001",
+			"type": "string"
+		},
+		{
+			"key": "bearer_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

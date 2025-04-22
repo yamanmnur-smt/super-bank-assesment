@@ -6,6 +6,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"net/http/httptest"
+	"strconv"
 	"testing"
 	"time"
 	"yamanmnur/simple-dashboard/internal/dto/data"
@@ -188,9 +189,8 @@ func TestCustomerService_Detail(t *testing.T) {
 		bank.Cvc = util.GenerateCVC()
 		bank.CardNumber = util.GenerateCardNumber()
 		totalBalance += bank.Balance
-
-		expectedCustomerData.TotalBalance = fmt.Sprintf("%.2f", totalBalance)
-		expectedCustomerData.TotalPockets = fmt.Sprintf("%.2f", totalPockets)
+		expectedCustomerData.TotalBalance, _ = util.FormatIDRCurrency(fmt.Sprintf("%.2f", totalBalance))
+		expectedCustomerData.TotalPockets, _ = util.FormatIDRCurrency(fmt.Sprintf("%.2f", totalPockets))
 
 		expectedCustomerData.Banks = data.BankAccountData{
 			Id:            bank.ID,
@@ -221,7 +221,7 @@ func TestCustomerService_Detail(t *testing.T) {
 			}
 		}
 
-		expectedCustomerData.TotalDeposits = fmt.Sprintf("%.2f", totalDeposits)
+		expectedCustomerData.TotalDeposits, _ = util.FormatIDRCurrency(fmt.Sprintf("%.2f", totalDeposits))
 		mockCustomerModel.CreatedAt = time.Now()
 		expectedCustomerData.CreatedAt = mockCustomerModel.CreatedAt.Format("02 January 2006")
 
@@ -318,6 +318,14 @@ func TestCustomerService_Create(t *testing.T) {
 				Deposites:      []data.TermDepositData{},
 			},
 		}
+
+		totalBalanceFloat, _ := strconv.ParseFloat(expectedCustomerData.TotalBalance, 64)
+		totalDepositFloat, _ := strconv.ParseFloat(expectedCustomerData.TotalDeposits, 64)
+		totalPocketsFloat, _ := strconv.ParseFloat(expectedCustomerData.TotalPockets, 64)
+		expectedCustomerData.TotalBalance, _ = util.FormatIDRCurrency(fmt.Sprintf("%.2f", totalBalanceFloat))
+		expectedCustomerData.TotalDeposits, _ = util.FormatIDRCurrency(fmt.Sprintf("%.2f", totalDepositFloat))
+		expectedCustomerData.TotalPockets, _ = util.FormatIDRCurrency(fmt.Sprintf("%.2f", totalPocketsFloat))
+
 		mockCustomerModel.Pockets = []models.Pocket{}
 		mockCustomerModel.BankAccounts[0].TermDeposit = []models.TermDeposit{}
 		mockCustomerModel.CreatedAt = time.Now()
@@ -520,6 +528,8 @@ func createMockFileHeader(fieldName, filename string, content []byte) *multipart
 }
 
 func TestCustomerService_UploadPhotoCustomer(t *testing.T) {
+
+	// t.Skip("Skipping this test temporarily")
 	t.Run("UploadPhotoCustomer() Success", func(t *testing.T) {
 		mockFileContent := []byte("unit test content")
 		mockFile := createMockFileHeader("file", "test-customer.txt", mockFileContent)
