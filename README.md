@@ -93,6 +93,46 @@ http://localhost:9001
 2. Install for Backend
 
 ## Generate Test Coverage Backend
+### Without Docker
+1. Up container minio from docker compose
+    ```
+    docker-compose up --build minio -d
+    ```
+2. Create .env from .env.example
+    ```
+    cd backend
+    cp .env.example .env
+    ```
+3. Update the .env value for minio host
+    ```
+    APP_MINIO_HOST=localhost:9000
+    ```
+4. Test & Generate Cover.out
+    ```
+    cd backend
+    go test ./... -coverprofile ./cover.out -covermode atomic -coverpkg ./...
+    ```
+5. Get cover.html
+    ```
+    cd backend
+    go tool cover -html cover.out -o cover.html
+    ```
+6. Get Total Coverage
+    ```
+    # Show All Percentages
+    go tool cover -func cover.out
+
+    # On Powershell
+    go tool cover -func cover.out |  Select-String 'total:'
+    
+    # On Unix
+    go tool cover -func cover.out | grep total:
+
+    # On CMD
+    go tool cover -func cover.out | findstr total:
+    ```
+
+### Use Docker
 
 1. Up container minio from docker compose
     ```

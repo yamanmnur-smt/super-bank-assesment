@@ -12,7 +12,7 @@ type TermDepositsTypesData struct {
 }
 
 type TermDepositData struct {
-	Amount                float64                         `json:"amount"`
+	Amount                string                          `json:"amount"`
 	InterestRate          float64                         `json:"interest_rate"`
 	StartDate             string                          `json:"start_date"`
 	MaturityDate          string                          `json:"maturity_date"`

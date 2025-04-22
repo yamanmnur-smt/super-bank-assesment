@@ -66,9 +66,11 @@ func (service *CustomerService) Detail(id uint) (data.CustomerDetailData, error)
 	for i, pocket := range customer.Pockets {
 		totalBalance += pocket.Balance
 		totalPockets += pocket.Balance
+		balancePockets, _ := util.FormatIDRCurrency(fmt.Sprintf("%.2f", pocket.Balance))
+
 		result.Pockets[i] = data.PocketData{
 			Name:     pocket.Name,
-			Balance:  pocket.Balance,
+			Balance:  balancePockets,
 			Currency: pocket.Currency,
 		}
 	}
@@ -97,8 +99,10 @@ func (service *CustomerService) Detail(id uint) (data.CustomerDetailData, error)
 	}
 	for j, deposit := range bank.TermDeposit {
 		totalDeposits += deposit.Amount
+		amountDeposit, _ := util.FormatIDRCurrency(fmt.Sprintf("%.2f", deposit.Amount))
+
 		result.Banks.Deposites[j] = data.TermDepositData{
-			Amount:                deposit.Amount,
+			Amount:                amountDeposit,
 			InterestRate:          deposit.InterestRate,
 			StartDate:             deposit.StartDate,
 			MaturityDate:          deposit.MaturityDate,

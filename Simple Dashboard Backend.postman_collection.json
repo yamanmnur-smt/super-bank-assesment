@@ -186,17 +186,15 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer ",
+										"value": "Bearer {{bearer_token}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3001/api/v1/auth/profile",
-									"protocol": "http",
+									"raw": "{{server_url}}/api/v1/auth/profile",
 									"host": [
-										"localhost"
+										"{{server_url}}"
 									],
-									"port": "3001",
 									"path": [
 										"api",
 										"v1",
@@ -286,17 +284,15 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer ",
+										"value": "Bearer {{bearer_token}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3001/api/v1/customer/list?page_number=0&page_size=10&search=&sort_by=&sort_direction=desc",
-									"protocol": "http",
+									"raw": "{{server_url}}/api/v1/customer/list?page_number=0&page_size=10&search=&sort_by=&sort_direction=desc",
 									"host": [
-										"localhost"
+										"{{server_url}}"
 									],
-									"port": "3001",
 									"path": [
 										"api",
 										"v1",
@@ -388,17 +384,15 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer ",
+										"value": "Bearer {{bearer_token}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3001/api/v1/customer/detail/:id",
-									"protocol": "http",
+									"raw": "{{server_url}}/api/v1/customer/detail/:id",
 									"host": [
-										"localhost"
+										"{{server_url}}"
 									],
-									"port": "3001",
 									"path": [
 										"api",
 										"v1",
@@ -534,7 +528,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer ",
+										"value": "Bearer {{bearer_token}}",
 										"type": "text"
 									},
 									{
@@ -554,12 +548,10 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:3001/api/v1/customer/upload-photo",
-									"protocol": "http",
+									"raw": "{{server_url}}/api/v1/customer/upload-photo",
 									"host": [
-										"localhost"
+										"{{server_url}}"
 									],
-									"port": "3001",
 									"path": [
 										"api",
 										"v1",
@@ -722,7 +714,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer ",
+										"value": "Bearer {{bearer_token}}",
 										"type": "text"
 									}
 								],
@@ -736,12 +728,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3001/api/v1/customer/create",
-									"protocol": "http",
+									"raw": "{{server_url}}/api/v1/customer/create",
 									"host": [
-										"localhost"
+										"{{server_url}}"
 									],
-									"port": "3001",
 									"path": [
 										"api",
 										"v1",
@@ -826,7 +816,7 @@
 					]
 				},
 				{
-					"name": "Upload Photo Customer",
+					"name": "Update Photo Customer",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -872,17 +862,15 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer ",
+										"value": "Bearer {{bearer_token}}",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3001/api/v1/customer/update-photo",
-									"protocol": "http",
+									"raw": "{{server_url}}/api/v1/customer/update-photo",
 									"host": [
-										"localhost"
+										"{{server_url}}"
 									],
-									"port": "3001",
 									"path": [
 										"api",
 										"v1",
@@ -932,7 +920,7 @@
 										},
 										{
 											"key": "photo",
-											"value": "image.png",
+											"value": "http://localhost:3001/api/v1/file/customer/photo?filename=Screenshot 2025-04-14 135835.png",
 											"type": "text"
 										}
 									],
@@ -973,7 +961,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"meta_data\": {\n        \"status\": \"success\",\n        \"message\": \"Success To Update Photo Customer\",\n        \"code\": \"200\"\n    },\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Yaman\",\n        \"email\": \"yaman@mail.com\",\n        \"phone_number\": \"1234567890\",\n        \"photo\": \"image.png\",\n        \"address\": \"123 Street, City, Country\",\n        \"account_number\": \"\",\n        \"created_at\": \"\"\n    }\n}"
+							"body": "{\n    \"meta_data\": {\n        \"status\": \"success\",\n        \"message\": \"Success To Update Photo Customer\",\n        \"code\": \"200\"\n    },\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Yaman\",\n        \"email\": \"yaman@mail.com\",\n        \"phone_number\": \"1234567890\",\n        \"photo\": \"http://localhost:3001/api/v1/file/customer/photo?filename=Screenshot 2025-04-14 135835.png\",\n        \"address\": \"123 Street, City, Country\",\n        \"account_number\": \"\",\n        \"created_at\": \"\"\n    }\n}"
 						}
 					]
 				}
@@ -1006,12 +994,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3001/api/v1/dashboard",
-									"protocol": "http",
+									"raw": "{{server_url}}/api/v1/dashboard",
 									"host": [
-										"localhost"
+										"{{server_url}}"
 									],
-									"port": "3001",
 									"path": [
 										"api",
 										"v1",

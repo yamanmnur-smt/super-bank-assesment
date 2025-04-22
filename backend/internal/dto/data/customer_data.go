@@ -58,7 +58,7 @@ type BankAccountData struct {
 }
 
 type PocketData struct {
-	Name     string  `json:"name"`
-	Balance  float64 `json:"balance"`
-	Currency string  `json:"currency"`
+	Name     string `json:"name"`
+	Balance  string `json:"balance"`
+	Currency string `json:"currency"`
 }

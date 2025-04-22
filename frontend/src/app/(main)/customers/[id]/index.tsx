@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleDollarSign, CreditCard, Eye } from "lucide-react";
+import { CircleDollarSign, CreditCard, Eye, LucideUser } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CustomerDetailData } from "../_dto/customers_dto";
@@ -184,13 +184,21 @@ const CustomerDetailComponent = () => {
                 </p>
               </div>
               <div className="relative w-16 h-16">
-                <Image
-								src="http://localhost:3001/api/v1/file/get-customer-photo?filename=Screenshot%202025-04-17%20102813.png" // replace with your image path
-								alt="Profile"
-								className="rounded-full border-2 border-green-400"
-								layout="fill"
-								objectFit="cover"
-							/>
+                {customer?.photo === undefined || customer?.photo === "" ? (
+                  <button
+                    className="relative w-20 h-20 flex items-center justify-center bg-[#588157] text-white font-bold rounded-full"
+                  >
+                    <LucideUser size={50} />
+                  </button>
+                ) : (
+                  <Image
+                  src={`${customer.photo}`} // replace with your image path
+                  alt="Profile"
+                  className="rounded-full border-2 border-green-400"
+                  layout="fill"
+                  objectFit="cover"
+                />
+                )}
             
                 <button className="absolute top-0 right-0 bg-white rounded-full p-1 shadow">
                   {/* <XIcon size={12} /> */}

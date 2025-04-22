@@ -26,6 +26,7 @@ This document provides an overview of the features available in the Frontend CMS
 
 ![Customer Management](/docs/images/customer.png)
 ![Customer Detail Management](/docs/images/customer_detail.png)
+![Customer Detail Management](/docs/images/customer_detail_deposits.png)
 
 ## Images
 All images used in this documentation are located in the `/docs/images/` directory within the project.

@@ -177,9 +177,11 @@ func TestCustomerService_Detail(t *testing.T) {
 		for i, pocket := range mockCustomerModel.Pockets {
 			totalBalance += pocket.Balance
 			totalPockets += pocket.Balance
+			balancePockets, _ := util.FormatIDRCurrency(fmt.Sprintf("%.2f", pocket.Balance))
+
 			expectedCustomerData.Pockets[i] = data.PocketData{
 				Name:     pocket.Name,
-				Balance:  pocket.Balance,
+				Balance:  balancePockets,
 				Currency: pocket.Currency,
 			}
 		}
@@ -203,8 +205,10 @@ func TestCustomerService_Detail(t *testing.T) {
 		}
 		for j, deposit := range bank.TermDeposit {
 			totalDeposits += deposit.Amount
+			amountDeposit, _ := util.FormatIDRCurrency(fmt.Sprintf("%.2f", deposit.Amount))
+
 			expectedCustomerData.Banks.Deposites[j] = data.TermDepositData{
-				Amount:                deposit.Amount,
+				Amount:                amountDeposit,
 				InterestRate:          deposit.InterestRate,
 				StartDate:             deposit.StartDate,
 				MaturityDate:          deposit.MaturityDate,
