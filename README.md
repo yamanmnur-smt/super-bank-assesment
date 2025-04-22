@@ -130,3 +130,7 @@ For detailed backend documentation & setup instructions, refer to [Backend Setup
 ### Frontend Setup Documentation
 
 For detailed frontend setup documentation & instructions, refer to [Frontend Setup Guide](docs/FE.md).
+
+### Features Documentation
+
+For detailed System features, refer to [Feature Guide](docs/FEATURES.md).
