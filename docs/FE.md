@@ -77,19 +77,21 @@ The frontend is built using **Next.js** and follows a modular structure. Below i
 
 ### Folder Structure
 ```
-frontend/
-├── components/         # Reusable UI components
-├── pages/              # Next.js pages (routes)
-│   ├── api/            # Next.js API routes (server-side logic)
-├── stores/             # Zustand state management
-├── utils/              # Utility functions
-├── styles/             # Global and component-specific styles
-├── public/             # Static assets
-├── hooks/              # Custom React hooks
-├── services/           # API service functions
-├── middleware/         # Middleware for handling requests
-├── next.config.js      # Next.js configuration
-├── package.json        # Project dependencies and scripts
+src/
+├── app/                # Application structure
+│   ├── _components/    # Shared reusable UI components
+│   ├── (auth)/         # Authentication-related pages and components
+│   │   ├── login/      # Login page and related components
+│   ├── (main)/         # Main application pages and components
+│   │   ├── _components/ # Shared components for main pages
+│   │   ├── dashboard/  # Dashboard page and related components
+│   │   ├── customer/   # Customer page and related components
+│   ├── api/            # API routes for server-side logic
+│   │   ├── auth/       # Authentication-related API routes
+│   │   ├── dashboard/  # Dashboard-related API routes
+│   │   ├── customer/   # Customer-related API routes
+├── assets/             # Static assets (images, fonts, etc.)
+├── context/            # Context providers for global state management
 ```
 
 ### Explanation of Key Features
@@ -106,13 +108,10 @@ frontend/
     - Centralized API service functions are defined in the `services/` folder.
     - Example: `authService`, `userService`.
 
-4. **Custom Hooks**:
-    - Reusable hooks for common logic, such as `useAuth`, `useFetch`.
-
-5. **Middleware**:
+4. **Middleware**:
     - Middleware is used for request handling and authentication checks.
 
-6. **Styling**:
+5. **Styling**:
     - Uses CSS modules and global styles for consistent design.
 
 ---
