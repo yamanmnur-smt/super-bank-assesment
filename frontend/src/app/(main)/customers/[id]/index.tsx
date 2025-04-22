@@ -15,6 +15,27 @@ const CustomerDetailComponent = () => {
   const getDetail = async ()  =>  {
     const result = await GetCustomerDetail(parseInt(id))
     if(result.data) {
+      result.data.banks.deposits.forEach(item => {
+        
+        const start_date = new Date(item.start_date);
+  
+        const formatted_start_date = start_date.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        });
+
+        item.start_date = formatted_start_date
+        const end_date = new Date(item.maturity_date);
+    
+        const formatted_end_date = end_date.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        });
+
+        item.maturity_date = formatted_end_date
+      })
 
       setCustomer(result.data)
     }
