@@ -7,7 +7,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
-RUN cp .env.example .env
+RUN cp .env.docker.development .env
 
 RUN go build -o backend .
 

@@ -144,8 +144,8 @@ http://localhost:9001
     ```
 2. Get cover.out and cover.html file from container
     ```
-    docker cp customerbackend-test:/app/cover.out ./coverage/cover.out
-    docker cp customerbackend-test:/app/cover.html ./coverage/cover.html
+    docker cp customerbackend-test:/app/cover.out ./backend/cover.out
+    docker cp customerbackend-test:/app/cover.html ./backend/cover.html
     ```
 3. Get Total Coverage
     ```

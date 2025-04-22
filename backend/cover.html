@@ -1291,9 +1291,11 @@ func (service *CustomerService) Detail(id uint) (data.CustomerDetailData, error)
         for i, pocket := range customer.Pockets </span><span class="cov4" title="2">{
                 totalBalance += pocket.Balance
                 totalPockets += pocket.Balance
+                balancePockets, _ := util.FormatIDRCurrency(fmt.Sprintf("%.2f", pocket.Balance))
+
                 result.Pockets[i] = data.PocketData{
                         Name:     pocket.Name,
-                        Balance:  pocket.Balance,
+                        Balance:  balancePockets,
                         Currency: pocket.Currency,
                 }
         }</span>
@@ -1322,8 +1324,10 @@ func (service *CustomerService) Detail(id uint) (data.CustomerDetailData, error)
         }
         for j, deposit := range bank.TermDeposit </span><span class="cov1" title="1">{
                 totalDeposits += deposit.Amount
+                amountDeposit, _ := util.FormatIDRCurrency(fmt.Sprintf("%.2f", deposit.Amount))
+
                 result.Banks.Deposites[j] = data.TermDepositData{
-                        Amount:                deposit.Amount,
+                        Amount:                amountDeposit,
                         InterestRate:          deposit.InterestRate,
                         StartDate:             deposit.StartDate,
                         MaturityDate:          deposit.MaturityDate,
@@ -1914,31 +1918,31 @@ import (
         "strings"
 )
 
-func FormatIDRCurrency(balance string) (string, error) <span class="cov7" title="28">{
+func FormatIDRCurrency(balance string) (string, error) <span class="cov7" title="34">{
         amount, err := strconv.ParseFloat(balance, 64)
         if err != nil </span><span class="cov1" title="1">{
                 return "", err
         }</span>
 
-        <span class="cov6" title="27">intAmount := int64(amount)
+        <span class="cov7" title="33">intAmount := int64(amount)
 
         result := formatWithDotSeparator(intAmount)
 
         return "Rp" + result, nil</span>
 }
 
-func formatWithDotSeparator(n int64) string <span class="cov6" title="27">{
+func formatWithDotSeparator(n int64) string <span class="cov7" title="33">{
         s := strconv.FormatInt(n, 10)
         var result strings.Builder
 
         length := len(s)
-        for i, digit := range s </span><span class="cov10" title="143">{
-                if i != 0 &amp;&amp; (length-i)%3 == 0 </span><span class="cov7" title="29">{
+        for i, digit := range s </span><span class="cov10" title="171">{
+                if i != 0 &amp;&amp; (length-i)%3 == 0 </span><span class="cov7" title="35">{
                         result.WriteRune('.')
                 }</span>
-                <span class="cov10" title="143">result.WriteRune(digit)</span>
+                <span class="cov10" title="171">result.WriteRune(digit)</span>
         }
-        <span class="cov6" title="27">return result.String()</span>
+        <span class="cov7" title="33">return result.String()</span>
 }
 </pre>
 		

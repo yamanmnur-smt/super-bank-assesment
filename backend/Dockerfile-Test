@@ -8,7 +8,7 @@ RUN go mod download
 
 COPY . .
 COPY entry-point-test.sh /app/entry-point-test.sh
-RUN cp .env.example .env
+RUN cp .env.docker.development .env
 RUN chmod +x entry-point-test.sh
 
 ENTRYPOINT ["/app/entry-point-test.sh"]

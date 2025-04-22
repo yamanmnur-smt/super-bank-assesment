@@ -37,6 +37,6 @@ RUN npm install
 
 COPY . .
 
-COPY .env.example .env
+COPY .env.docker.development .env
 
 CMD ["npm", "run", "dev"]
