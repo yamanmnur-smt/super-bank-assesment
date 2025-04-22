@@ -120,15 +120,19 @@ http://localhost:9001
 6. Get Total Coverage
     ```
     # Show All Percentages
+    cd backend
     go tool cover -func cover.out
 
     # On Powershell
+    cd backend
     go tool cover -func cover.out |  Select-String 'total:'
     
     # On Unix
+    cd backend
     go tool cover -func cover.out | grep total:
 
-    # On CMD
+    # On 
+    cd backend
     go tool cover -func cover.out | findstr total:
     ```
 
@@ -154,12 +158,15 @@ http://localhost:9001
     or just show result after copy cover.out
     
     # On Powershell
+    cd backend
     go tool cover -func cover.out |  Select-String 'total:'
     
     # On Unix
+    cd backend
     go tool cover -func cover.out | grep total:
 
     # On CMD
+    cd backend
     go tool cover -func cover.out | findstr total:
     ```
 ## Test Threshold Backend Using Github Action
